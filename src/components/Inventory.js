@@ -63,23 +63,28 @@ class Inventory extends Component {
       uid: null
     });
   };
+
   loadSampleUnits = () => {
     this.setState({
       units: sampleUnits
     });
   };
+
   render() {
-    if (!this.state.owner) {
-      return <LoginPage />;
-    } else {
-      return (
-        <div className="inventoryHolder">
-          {Object.keys(this.state.units).map(key => (
-            <li key={key}>{this.state.units[key].name}</li>
-          ))}
-        </div>
-      );
+    if (!this.state.uid) {
+      return <LoginPage authenticate={this.authenticate} />;
     }
+    if (this.state.uid !== this.state.owner) {
+      return <p>Sorry Bruh, not owner</p>;
+    }
+    return (
+      <div className="inventoryHolder">
+        <button onClick={this.logout}>Logout</button>
+        {Object.keys(this.state.units).map(key => (
+          <li key={key}>{this.state.units[key].name}</li>
+        ))}
+      </div>
+    );
   }
 }
 

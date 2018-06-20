@@ -10,7 +10,10 @@ class LoginPage extends Component {
       <nav className="login">
         <h2>Inventory Login</h2>
         <p>Sign in to manage your inventory.</p>
-        <button className="google" onClick={() => this.authenticate("Google")}>
+        <button
+          className="google"
+          onClick={() => this.props.authenticate("Google")}
+        >
           Log In With Gmail
         </button>
       </nav>
