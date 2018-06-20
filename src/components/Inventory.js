@@ -24,6 +24,7 @@ class Inventory extends Component {
         this.authHandler({ user });
       }
     });
+    this.loadSampleUnits();
   }
 
   componentWillUnmount() {
@@ -62,7 +63,11 @@ class Inventory extends Component {
       uid: null
     });
   };
-
+  loadSampleUnits = () => {
+    this.setState({
+      units: sampleUnits
+    });
+  };
   render() {
     if (!this.state.owner) {
       return <LoginPage />;
