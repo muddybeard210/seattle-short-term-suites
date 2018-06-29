@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import LoginPage from "./LoginPage";
-import sampleUnits from "../sample-units";
+import sampleUnits from "../sample-suites";
 import firebase from "firebase";
 import base, { firebaseApp } from "../base";
+import AddSuiteForm from "./AddSuiteForm";
 
 class Inventory extends Component {
   state = {
-    units: {},
+    suites: {},
     uid: null,
     owner: null
   };
@@ -14,9 +15,9 @@ class Inventory extends Component {
     const storeID = "short-term-suites";
 
     // this.databseReference is a made up custom name.  not built in.
-    this.databaseReference = base.syncState(`${storeID}/units`, {
+    this.databaseReference = base.syncState(`${storeID}/suites`, {
       context: this,
-      state: "units"
+      state: "suites"
     });
 
     firebase.auth().onAuthStateChanged(user => {
@@ -66,7 +67,18 @@ class Inventory extends Component {
 
   loadSampleUnits = () => {
     this.setState({
-      units: sampleUnits
+      suites: sampleUnits
+    });
+  };
+
+  addSuite = suite => {
+    // 1. Take copy of existing state
+    const suites = { ...this.state.suites };
+    // 2. Add new suite to suites variable
+    suites[`suite${Date.now()}`] = suite;
+    // 3. Set the new suites object to state;
+    this.setState({
+      suites: suites
     });
   };
 
@@ -80,8 +92,9 @@ class Inventory extends Component {
     return (
       <div className="inventoryHolder">
         <button onClick={this.logout}>Logout</button>
-        {Object.keys(this.state.units).map(key => (
-          <li key={key}>{this.state.units[key].name}</li>
+        <AddSuiteForm addSuite={this.addSuite} />
+        {Object.keys(this.state.suites).map(key => (
+          <li key={key}>{this.state.suites[key].name}</li>
         ))}
       </div>
     );
