@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import FileUploadInput from "./FileUploadInput";
 
 class AddSuiteForm extends Component {
   nameInput = React.createRef();
@@ -48,6 +49,7 @@ class AddSuiteForm extends Component {
           type="text"
           placeholder="Image"
         />
+        <FileUploadInput />
         <button type="submit">Add Suite</button>
       </form>
     );
