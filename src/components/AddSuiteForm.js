@@ -38,8 +38,8 @@ class AddSuiteForm extends Component {
           placeholder="Price"
         />
         <select name="status" ref={this.statusInput} placeholder="Status">
-          <option value="available">Fresh</option>
-          <option value="unavailable">Sold Out</option>
+          <option value="available">Available</option>
+          <option value="unavailable">Unavailable</option>
         </select>
         <textarea name="desc" ref={this.descInput} placeholder="Desc" />
         <input
