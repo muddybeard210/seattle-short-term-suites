@@ -4,15 +4,11 @@ import FileUploader from "react-firebase-file-uploader";
 
 class FileUploadInput extends Component {
   state = {
-    username: "",
-    avatar: "",
     isUploading: false,
     progress: 0,
     avatarURL: ""
   };
 
-  handleChangeUsername = event =>
-    this.setState({ username: event.target.value });
   handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });
   handleProgress = progress => this.setState({ progress });
   handleUploadError = error => {
@@ -20,29 +16,23 @@ class FileUploadInput extends Component {
     console.error(error);
   };
   handleUploadSuccess = filename => {
+    console.log("Upload successful", filename);
     this.setState({ avatar: filename, progress: 100, isUploading: false });
     firebase
       .storage()
       .ref("images")
       .child(filename)
       .getDownloadURL()
-      .then(url => this.setState({ avatarURL: url }));
+      .then(url => this.setState({ filename: url }));
   };
 
   render() {
     return (
       <div>
         <form>
-          <label>Username:</label>
-          <input
-            type="text"
-            value={this.state.username}
-            name="username"
-            onChange={this.handleChangeUsername}
-          />
-          <label>Avatar:</label>
+          {/* <label>Avatar:</label>
           {this.state.isUploading && <p>Progress: {this.state.progress}</p>}
-          {this.state.avatarURL && <img src={this.state.avatarURL} />}
+          {this.state.avatarURL && <img src={this.state.avatarURL} alt="" />} */}
           <FileUploader
             accept="image/*"
             name="avatar"
