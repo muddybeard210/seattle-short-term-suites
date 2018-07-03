@@ -4,6 +4,7 @@ import sampleUnits from "../sample-suites";
 import firebase from "firebase";
 import base, { firebaseApp } from "../base";
 import AddSuiteForm from "./AddSuiteForm";
+import EditSuiteForm from "./EditSuiteForm";
 
 class Inventory extends Component {
   state = {
@@ -25,7 +26,7 @@ class Inventory extends Component {
         this.authHandler({ user });
       }
     });
-    this.loadSampleUnits();
+    // this.loadSampleUnits();
   }
 
   componentWillUnmount() {
@@ -82,19 +83,47 @@ class Inventory extends Component {
     });
   };
 
+  updateSuite = (key, updatedSuite) => {
+    const suites = { ...this.state.suites };
+    suites[key] = updatedSuite;
+
+    this.setState({
+      suites: suites
+    });
+  };
+
+  deleteSuite = key => {
+    const suites = { ...this.state.suites };
+    suites[key] = null;
+    this.setState({
+      suites: suites
+    });
+  };
+
   render() {
     if (!this.state.uid) {
       return <LoginPage authenticate={this.authenticate} />;
     }
     if (this.state.uid !== this.state.owner) {
-      return <p>Sorry Bruh, not owner</p>;
+      return (
+        <div>
+          <p>Sorry Bruh, not owner</p>
+          <button onClick={this.logout}>Logout</button>
+        </div>
+      );
     }
     return (
       <div className="inventoryHolder">
         <button onClick={this.logout}>Logout</button>
         <AddSuiteForm addSuite={this.addSuite} />
         {Object.keys(this.state.suites).map(key => (
-          <li key={key}>{this.state.suites[key].name}</li>
+          <EditSuiteForm
+            key={key}
+            index={key}
+            suite={this.state.suites[key]}
+            updateSuite={this.updateSuite}
+            deleteSuite={this.deleteSuite}
+          />
         ))}
       </div>
     );
