@@ -1,12 +1,45 @@
 import React, { Component } from "react";
 import FileUploadInput from "./FileUploadInput";
+import firebase from "firebase";
 
 class AddSuiteForm extends Component {
+  state = {
+    isUploading: false,
+    progress: 0,
+    pictures: []
+  };
+
   nameInput = React.createRef();
   priceInput = React.createRef();
   statusInput = React.createRef();
   descInput = React.createRef();
   imageInput = React.createRef();
+
+  handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });
+  handleProgress = progress => this.setState({ progress });
+  handleUploadError = error => {
+    this.setState({ isUploading: false });
+    console.error(error);
+  };
+  updatePictures = newPicture => {
+    const pictures = this.state.pictures;
+    pictures.push(newPicture);
+    this.setState({
+      pictures
+    });
+  };
+  handleUploadSuccess = filename => {
+    console.log("Upload successful", filename);
+    this.setState({ avatar: filename, progress: 100, isUploading: false });
+    firebase
+      .storage()
+      .ref("images")
+      .child(filename)
+      .getDownloadURL()
+      .then(url => {
+        this.updatePictures(url);
+      });
+  };
 
   createSuite = event => {
     // 1. Stop event from submitting
@@ -43,13 +76,15 @@ class AddSuiteForm extends Component {
           <option value="unavailable">Unavailable</option>
         </select>
         <textarea name="desc" ref={this.descInput} placeholder="Desc" />
-        <input
-          name="image"
+        <FileUploadInput
           ref={this.imageInput}
-          type="text"
-          placeholder="Image"
+          handleUploadStart={this.handleUploadStart}
+          handleProgress={this.handleProgress}
+          handleUploadError={this.handleUploadError}
+          updatePictures={this.updatePictures}
+          handleUploadSuccess={this.handleUploadSuccess}
+          storageRef={firebase.storage().ref("images")}
         />
-        <FileUploadInput />
         <button type="submit">Add Suite</button>
       </form>
     );
