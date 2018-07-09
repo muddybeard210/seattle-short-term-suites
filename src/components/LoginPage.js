@@ -28,6 +28,11 @@ const StyledButton = styled.button`
   height: 30px;
   background-color: #fefefe;
   cursor: pointer;
+  transition: 0.15s all;
+  &:hover {
+    background-color: black;
+    color: #fefefe;
+  }
 `;
 
 class LoginPage extends Component {

@@ -10,6 +10,16 @@ const StyledForm = styled.form`
   height: 100%;
   justify-content: space-around;
   max-height: 360px;
+
+  & > input {
+    background: #4e4a59;
+    border: 1px solid grey;
+    padding: 10px;
+    color: white;
+    &::placeholder {
+      color: white;
+    }
+  }
 `;
 
 class AddSuiteForm extends Component {

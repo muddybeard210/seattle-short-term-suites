@@ -8,23 +8,27 @@ import EditSuiteForm from "./EditSuiteForm";
 import styled from "styled-components";
 
 const InventoryHolder = styled.div`
-  max-width: 95%;
+  max-width: 100%;
   margin: auto;
 `;
 const LeftSideContent = styled.div`
   display: flex;
   flex-direction: column;
   width: 15%;
-  margin-right: 10px;
+  padding: 10px;
+  background-color: #37353d;
 `;
 const RightSideContent = styled.div`
   display: flex;
   flex-direction: column;
   width: 85%;
+  padding: 15px;
+  background-color: #3e3b45;
 `;
 
 const StyledInventoryHolder = styled(InventoryHolder)`
   display: flex;
+  height: 100%;
 `;
 
 class Inventory extends Component {
