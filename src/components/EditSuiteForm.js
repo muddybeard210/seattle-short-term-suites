@@ -1,6 +1,21 @@
 import React, { Component } from "react";
+import styled from "styled-components";
+
+const PictureHolderDiv = styled.div`
+  display: flex;
+  overflow-x: scroll;
+  height: 400px;
+`;
+const PictureHolderImg = styled.img`
+  height: 100%;
+  padding-right: 20px;
+`;
+
 class EditFishForm extends Component {
   state = {};
+  componentDidMount() {
+    console.log(this.props.suite.image);
+  }
   handleChange = event => {
     const updateSuite = {
       ...this.props.suite,
@@ -43,14 +58,12 @@ class EditFishForm extends Component {
           placeholder="Desc"
           onChange={this.handleChange}
         />
-        <input
-          name="image"
-          value={this.props.suite.image}
-          onChange={this.handleChange}
-          type="text"
-          placeholder="Image"
-        />
-        <button onClick={this.handleDelete} />
+        <PictureHolderDiv>
+          {this.props.suite.image.map((imageUrl, index) => (
+            <PictureHolderImg key={index} src={imageUrl} />
+          ))}
+        </PictureHolderDiv>
+        <button onClick={this.handleDelete}>Delete Suite</button>
       </div>
     );
   }

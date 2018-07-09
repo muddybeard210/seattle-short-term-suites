@@ -3,6 +3,18 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import App from "./App";
 import NotFound from "./NotFound";
 import Inventory from "./Inventory";
+import { injectGlobal } from "styled-components";
+
+injectGlobal`
+  @import url('https://fonts.googleapis.com/css?family=Open+Sans|Raleway:300');
+
+  h1, h2, h3, h4 {
+    font-family: Raleway, sans-serif;
+  }
+  p {
+    font-family: 'Open Sans', sans-serif;
+  }
+`;
 
 const Router = () => (
   <BrowserRouter>
