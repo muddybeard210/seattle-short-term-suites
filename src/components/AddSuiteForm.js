@@ -1,31 +1,98 @@
 import React, { Component } from "react";
 import FileUploadInput from "./FileUploadInput";
+// import FileUploader from "react-firebase-file-uploader";
+import firebase from "firebase";
+import styled from "styled-components";
+
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-around;
+  max-height: 360px;
+`;
 
 class AddSuiteForm extends Component {
+  state = {
+    isUploading: false,
+    progress: 0,
+    files: [],
+    pictures: []
+  };
+
   nameInput = React.createRef();
   priceInput = React.createRef();
   statusInput = React.createRef();
   descInput = React.createRef();
   imageInput = React.createRef();
 
+  handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });
+  handleProgress = progress => this.setState({ progress });
+  handleUploadError = error => {
+    this.setState({ isUploading: false });
+    console.error(error);
+  };
+  updatePictures = newPicture => {
+    const pictures = this.state.pictures;
+    pictures.push(newPicture);
+    this.setState({
+      pictures
+    });
+  };
+
+  handleUploadSuccess = filename => {
+    console.log("Upload successful", filename);
+    this.setState({ avatar: filename, progress: 100, isUploading: false });
+    firebase
+      .storage()
+      .ref("images")
+      .child(`${this.nameInput.current.value}/${filename}`)
+      .getDownloadURL()
+      .then(url => {
+        this.updatePictures(url);
+      });
+  };
+
   createSuite = event => {
     // 1. Stop event from submitting
-    event.preventDefault();
     // 2.
+    event.preventDefault();
 
     const suite = {
       name: this.nameInput.current.value,
       price: parseFloat(this.priceInput.current.value),
       status: this.statusInput.current.value,
       desc: this.descInput.current.value,
-      image: this.imageInput.current.value
+      image: this.state.pictures
     };
     this.props.addSuite(suite);
+    this.startUploadManually();
     event.currentTarget.reset();
+  };
+
+  handleOnChange = event => {
+    const files = event.target.files;
+    const filesToStore = [];
+
+    files.forEach(file => filesToStore.push(file));
+    this.setState({ files: filesToStore });
+  };
+
+  startUploadManually = () => {
+    const { files } = this.state;
+    files.forEach(file => {
+      this.fileUploader.startUpload(file);
+    });
+  };
+
+  testSomething = event => {
+    event.preventDefault();
+    console.log(this.nameInput);
   };
   render() {
     return (
-      <form action="" className="suite-edit" onSubmit={this.createSuite}>
+      <StyledForm action="" className="suite-edit" onSubmit={this.createSuite}>
+        {/* <StyledForm action="" className="suite-edit" onSubmit={this.testSomething}> */}
         <input
           name="name"
           ref={this.nameInput}
@@ -43,15 +110,18 @@ class AddSuiteForm extends Component {
           <option value="unavailable">Unavailable</option>
         </select>
         <textarea name="desc" ref={this.descInput} placeholder="Desc" />
-        <input
-          name="image"
+        <FileUploadInput
           ref={this.imageInput}
-          type="text"
-          placeholder="Image"
+          handleUploadStart={this.handleUploadStart}
+          handleProgress={this.handleProgress}
+          handleUploadError={this.handleUploadError}
+          updatePictures={this.updatePictures}
+          handleUploadSuccess={this.handleUploadSuccess}
+          storageRef={firebase.storage().ref("images")}
+          handleOnChange={this.handleOnChange}
         />
-        <FileUploadInput />
         <button type="submit">Add Suite</button>
-      </form>
+      </StyledForm>
     );
   }
 }

@@ -5,6 +5,27 @@ import firebase from "firebase";
 import base, { firebaseApp } from "../base";
 import AddSuiteForm from "./AddSuiteForm";
 import EditSuiteForm from "./EditSuiteForm";
+import styled from "styled-components";
+
+const InventoryHolder = styled.div`
+  max-width: 95%;
+  margin: auto;
+`;
+const LeftSideContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 15%;
+  margin-right: 10px;
+`;
+const RightSideContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+`;
+
+const StyledInventoryHolder = styled(InventoryHolder)`
+  display: flex;
+`;
 
 class Inventory extends Component {
   state = {
@@ -113,19 +134,23 @@ class Inventory extends Component {
       );
     }
     return (
-      <div className="inventoryHolder">
-        <button onClick={this.logout}>Logout</button>
-        <AddSuiteForm addSuite={this.addSuite} />
-        {Object.keys(this.state.suites).map(key => (
-          <EditSuiteForm
-            key={key}
-            index={key}
-            suite={this.state.suites[key]}
-            updateSuite={this.updateSuite}
-            deleteSuite={this.deleteSuite}
-          />
-        ))}
-      </div>
+      <StyledInventoryHolder>
+        <LeftSideContent>
+          <button onClick={this.logout}>Logout</button>
+          <AddSuiteForm addSuite={this.addSuite} />
+        </LeftSideContent>
+        <RightSideContent>
+          {Object.keys(this.state.suites).map(key => (
+            <EditSuiteForm
+              key={key}
+              index={key}
+              suite={this.state.suites[key]}
+              updateSuite={this.updateSuite}
+              deleteSuite={this.deleteSuite}
+            />
+          ))}
+        </RightSideContent>
+      </StyledInventoryHolder>
     );
   }
 }
