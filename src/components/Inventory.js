@@ -16,14 +16,16 @@ const LeftSideContent = styled.div`
   flex-direction: column;
   width: 15%;
   padding: 10px;
-  background-color: #37353d;
+  background-color: #eaeaea;
 `;
 const RightSideContent = styled.div`
   display: flex;
   flex-direction: column;
   width: 85%;
   padding: 15px;
-  background-color: #3e3b45;
+  background-color: #fefefe;
+  height: 100%;
+  overflow-y: scroll;
 `;
 
 const StyledInventoryHolder = styled(InventoryHolder)`
@@ -139,15 +141,19 @@ class Inventory extends Component {
     }
     return (
       <StyledInventoryHolder>
-        <LeftSideContent>
-          <button onClick={this.logout}>Logout</button>
+        <LeftSideContent className="doodlecake">
+          <button className="btn btn-secondary" onClick={this.logout}>
+            Logout
+          </button>
           <AddSuiteForm addSuite={this.addSuite} />
         </LeftSideContent>
         <RightSideContent>
+          <h3>Current Suites</h3>
           {Object.keys(this.state.suites).map(key => (
             <EditSuiteForm
               key={key}
               index={key}
+              name={key}
               suite={this.state.suites[key]}
               updateSuite={this.updateSuite}
               deleteSuite={this.deleteSuite}

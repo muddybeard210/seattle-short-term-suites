@@ -12,12 +12,11 @@ const StyledForm = styled.form`
   max-height: 360px;
 
   & > input {
-    background: #4e4a59;
     border: 1px solid grey;
     padding: 10px;
-    color: white;
+    border-radius: 0.25em;
     &::placeholder {
-      color: white;
+      color: lightgrey;
     }
   }
 `;
@@ -130,7 +129,9 @@ class AddSuiteForm extends Component {
           storageRef={firebase.storage().ref("images")}
           handleOnChange={this.handleOnChange}
         />
-        <button type="submit">Add Suite</button>
+        <button className="btn btn-success" type="submit">
+          Add Suite
+        </button>
       </StyledForm>
     );
   }
