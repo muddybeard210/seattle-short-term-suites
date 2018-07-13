@@ -9,15 +9,13 @@ const StyledForm = styled.form`
   flex-direction: column;
   height: 100%;
   justify-content: space-around;
-  max-height: 360px;
 
   & > input {
-    background: #4e4a59;
     border: 1px solid grey;
     padding: 10px;
-    color: white;
+    border-radius: 0.25em;
     &::placeholder {
-      color: white;
+      color: lightgrey;
     }
   }
 `;
@@ -35,6 +33,9 @@ class AddSuiteForm extends Component {
   statusInput = React.createRef();
   descInput = React.createRef();
   imageInput = React.createRef();
+  addressLineOne = React.createRef();
+  addressLineTwo = React.createRef();
+  nextAvailableDate = React.createRef();
 
   handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });
   handleProgress = progress => this.setState({ progress });
@@ -42,9 +43,15 @@ class AddSuiteForm extends Component {
     this.setState({ isUploading: false });
     console.error(error);
   };
-  updatePictures = newPicture => {
+
+  updatePictures = (url, filename) => {
     const pictures = this.state.pictures;
-    pictures.push(newPicture);
+    const storedFile = {
+      filename: filename,
+      url: url
+    };
+    console.log("url:", url);
+    pictures.push(storedFile);
     this.setState({
       pictures
     });
@@ -55,11 +62,11 @@ class AddSuiteForm extends Component {
     this.setState({ avatar: filename, progress: 100, isUploading: false });
     firebase
       .storage()
-      .ref("images")
-      .child(`${this.nameInput.current.value}/${filename}`)
+      .ref()
+      .child(`images/${filename}`)
       .getDownloadURL()
       .then(url => {
-        this.updatePictures(url);
+        this.updatePictures(url, filename);
       });
   };
 
@@ -70,10 +77,13 @@ class AddSuiteForm extends Component {
 
     const suite = {
       name: this.nameInput.current.value,
-      price: parseFloat(this.priceInput.current.value),
+      price: this.priceInput.current.value,
       status: this.statusInput.current.value,
       desc: this.descInput.current.value,
-      image: this.state.pictures
+      image: this.state.pictures,
+      addressLineOne: this.addressLineOne.current.value,
+      addressLineTwo: this.addressLineTwo.current.value,
+      nextAvailableDate: this.nextAvailableDate.current.value
     };
     this.props.addSuite(suite);
     this.startUploadManually();
@@ -115,10 +125,28 @@ class AddSuiteForm extends Component {
           type="text"
           placeholder="Price"
         />
+        <input
+          type="text"
+          name="addressLineOne"
+          ref={this.addressLineOne}
+          placeholder="Address Line 1"
+        />
+        <input
+          type="text"
+          name="addressLineTwo"
+          ref={this.addressLineTwo}
+          placeholder="Address Line 2"
+        />
         <select name="status" ref={this.statusInput} placeholder="Status">
           <option value="available">Available</option>
           <option value="unavailable">Unavailable</option>
         </select>
+        <input
+          type="date"
+          name="nextAvailableDate"
+          ref={this.nextAvailableDate}
+          placeholder="Next Available Date"
+        />
         <textarea name="desc" ref={this.descInput} placeholder="Desc" />
         <FileUploadInput
           ref={this.imageInput}
@@ -130,7 +158,9 @@ class AddSuiteForm extends Component {
           storageRef={firebase.storage().ref("images")}
           handleOnChange={this.handleOnChange}
         />
-        <button type="submit">Add Suite</button>
+        <button className="btn btn-success" type="submit">
+          Add Suite
+        </button>
       </StyledForm>
     );
   }

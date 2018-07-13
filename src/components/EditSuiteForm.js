@@ -14,23 +14,33 @@ const PictureHolderImg = styled.img`
 `;
 const FlexDiv = styled.div`
   display: flex;
+  margin-bottom: 10px;
+  flex-direction: column;
 `;
-
+const StyledWrapper = styled.div`
+  margin: 10px;
+  padding: 5px;
+  box-shadow: 0px 0px 10px 0px black;
+  border-radius: 4px;
+`;
 const InputHolder = styled.div`
-   & > input, textarea, select {
-    background: #4e4a59;
+  /* & > div input, textarea, select {
     border: 1px solid grey;
     padding: 10px;
-    color: white;
+    margin: 5px 0px;
     &::placeholder {
-      color: white;
-    }
+      color: lightgrey;
+      font-size: 12px;
+    } */
+`;
+const StyledDeleteButton = styled.button`
+  margin-top: 5px;
 `;
 
 class EditFishForm extends Component {
   state = {};
   componentDidMount() {
-    console.log(this.props.suite.image);
+    console.log("image:", this.props.suite.image);
   }
   handleChange = event => {
     const updateSuite = {
@@ -44,9 +54,10 @@ class EditFishForm extends Component {
   };
   render() {
     return (
-      <div>
+      <StyledWrapper>
         <InputHolder>
           <FlexDiv>
+            <label htmlFor="name">Suite Name</label>
             <input
               name="name"
               value={this.props.suite.name}
@@ -54,6 +65,7 @@ class EditFishForm extends Component {
               type="text"
               placeholder="Name"
             />
+            <label htmlFor="price">Price Per Month</label>
             <input
               name="price"
               value={this.props.suite.price}
@@ -61,8 +73,22 @@ class EditFishForm extends Component {
               type="text"
               placeholder="Price"
             />
-          </FlexDiv>
-          <FlexDiv>
+            <label htmlFor="addressLineOne">Address</label>
+            <input
+              name="addressLineOne"
+              value={this.props.suite.addressLineOne}
+              onChange={this.handleChange}
+              type="text"
+              placeholder="Address Line One"
+            />
+            <input
+              name="addressLineTwo"
+              value={this.props.suite.addressLineTwo}
+              onChange={this.handleChange}
+              type="text"
+              placeholder="Address Line Two"
+            />
+            <label htmlFor="status">Availability Status</label>
             <select
               name="status"
               value={this.props.suite.status}
@@ -72,6 +98,15 @@ class EditFishForm extends Component {
               <option value="available">Available</option>
               <option value="unavailable">Unavailable</option>
             </select>
+            <label htmlFor="nextAvailableDate">Address</label>
+            <input
+              name="nextAvailableDate"
+              value={this.props.suite.nextAvailableDate}
+              onChange={this.handleChange}
+              type="text"
+              placeholder="Next Available Date"
+            />
+            <label htmlFor="desc">Suite Description</label>
             <textarea
               name="desc"
               value={this.props.suite.desc}
@@ -81,12 +116,17 @@ class EditFishForm extends Component {
           </FlexDiv>
         </InputHolder>
         <PictureHolderDiv>
-          {this.props.suite.image.map((imageUrl, index) => (
-            <PictureHolderImg key={index} src={imageUrl} />
+          {this.props.suite.image.map(imgObj => (
+            <PictureHolderImg key={imgObj.filename} src={imgObj.url} />
           ))}
         </PictureHolderDiv>
-        <button onClick={this.handleDelete}>Delete Suite</button>
-      </div>
+        <StyledDeleteButton
+          className="btn btn-outline-danger"
+          onClick={this.handleDelete}
+        >
+          Delete Suite
+        </StyledDeleteButton>
+      </StyledWrapper>
     );
   }
 }
