@@ -6,6 +6,36 @@ import base, { firebaseApp } from "../base";
 import AddSuiteForm from "./AddSuiteForm";
 import EditSuiteForm from "./EditSuiteForm";
 import styled from "styled-components";
+import { injectGlobal } from "styled-components";
+
+injectGlobal`
+  @import url('https://fonts.googleapis.com/css?family=Open+Sans|Raleway:300');
+
+  h1, h2, h3, h4 {
+    font-family: Raleway, sans-serif;
+  }
+  p {
+    font-family: 'Open Sans', sans-serif;
+  }
+  input, textarea, select {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1;
+    background-color: white;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  }
+  textarea {
+    min-height: 160px;
+  }
+  body {
+    font-family: 'Open Sans',sans-serif;
+  }
+`;
 
 const InventoryHolder = styled.div`
   max-width: 100%;
@@ -14,16 +44,15 @@ const InventoryHolder = styled.div`
 const LeftSideContent = styled.div`
   display: flex;
   flex-direction: column;
-  width: 15%;
+  width: 20%;
   padding: 10px;
   background-color: #eaeaea;
 `;
 const RightSideContent = styled.div`
   display: flex;
   flex-direction: column;
-  width: 85%;
+  width: 80%;
   padding: 15px;
-  background-color: #fefefe;
   height: 100%;
   overflow-y: scroll;
 `;
@@ -31,6 +60,8 @@ const RightSideContent = styled.div`
 const StyledInventoryHolder = styled(InventoryHolder)`
   display: flex;
   height: 100%;
+  background: url(https://images.unsplash.com/photo-1469321461812-afeb94496b27?ixlib=rb-0.3.5…e383d6b…&dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb);
+  background-size: cover;
 `;
 
 class Inventory extends Component {

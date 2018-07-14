@@ -9,6 +9,7 @@ const StyledForm = styled.form`
   flex-direction: column;
   height: 100%;
   justify-content: space-around;
+  max-height: 600px;
 
   & > input {
     border: 1px solid grey;

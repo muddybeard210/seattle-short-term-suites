@@ -6,7 +6,7 @@ const PictureHolderDiv = styled.div`
   align-items: center;
   overflow-x: scroll;
   height: 180px;
-  background-color: #d3d3d34f;
+  background-color: #d3d3d3;
 `;
 const PictureHolderImg = styled.img`
   height: 90%;
@@ -22,19 +22,12 @@ const StyledWrapper = styled.div`
   padding: 5px;
   box-shadow: 0px 0px 10px 0px black;
   border-radius: 4px;
+  background-color: #fefefed9;
 `;
-const InputHolder = styled.div`
-  /* & > div input, textarea, select {
-    border: 1px solid grey;
-    padding: 10px;
-    margin: 5px 0px;
-    &::placeholder {
-      color: lightgrey;
-      font-size: 12px;
-    } */
-`;
+
 const StyledDeleteButton = styled.button`
   margin-top: 5px;
+  background-color: #fefefe;
 `;
 
 class EditFishForm extends Component {
@@ -55,7 +48,7 @@ class EditFishForm extends Component {
   render() {
     return (
       <StyledWrapper>
-        <InputHolder>
+        <div>
           <FlexDiv>
             <label htmlFor="name">Suite Name</label>
             <input
@@ -114,7 +107,7 @@ class EditFishForm extends Component {
               onChange={this.handleChange}
             />
           </FlexDiv>
-        </InputHolder>
+        </div>
         <PictureHolderDiv>
           {this.props.suite.image.map(imgObj => (
             <PictureHolderImg key={imgObj.filename} src={imgObj.url} />
