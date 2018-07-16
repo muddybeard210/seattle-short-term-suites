@@ -1,16 +1,22 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import logo from "../media/logo.jpg";
 
 const StyledNavWrapper = styled.div`
   height: 90px;
   border-bottom: 1px solid black;
   width: 100%;
   display: flex;
-  justify-content: flex-end;
   align-items: center;
 `;
-
+const StyledLogoHolder = styled.div`
+  width: 55%;
+  height: 100%;
+  & img {
+    height: 100%;
+  }
+`;
 const StyledNavLinkHolder = styled.div`
   width: 45%;
   display: flex;
@@ -22,10 +28,10 @@ const StyledNavLinkHolder = styled.div`
   & a {
     transition: all 0.25s;
     color: black;
-    padding: 0px 5px;
+    padding: 0px 10px;
     &:hover {
       background-color: black;
-      padding: 20px 5px;
+      padding: 20px 10px;
       color: white;
     }
   }
@@ -40,10 +46,13 @@ class MainNav extends Component {
   render() {
     return (
       <StyledNavWrapper>
+        <StyledLogoHolder>
+          <img src={logo} alt="" />
+        </StyledLogoHolder>
         <StyledNavLinkHolder>
           <Link to="/app/home">Home</Link>
-          <Link to="/app/about">About</Link>
           <Link to="/app/availability">Availability</Link>
+          <Link to="/app/about">About</Link>
           <Link to="/app/faq">FAQ</Link>
         </StyledNavLinkHolder>
       </StyledNavWrapper>
