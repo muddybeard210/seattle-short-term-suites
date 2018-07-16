@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import homeBanner from "../media/homeBanner.jpg";
 
 const StyledBannerHolder = styled.div`
@@ -10,23 +10,37 @@ const StyledBannerHolder = styled.div`
   background: url(${homeBanner});
   background-size: cover;
   background-position-y: -110px;
-  transition: all 2s;
-  opacity: ${props => props.hidethis};
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   @media screen and (max-width: 1560px) {
     background-position-y: 0px;
   }
 `;
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    margin-top: -400px;
+  }
+
+  to {
+    opacity: 1;
+    margin-top: 0px;
+  }
+`;
+
+const StyledH1 = styled.h1`
+  transition: all 2s;
+  animation: ${fadeIn} 2s forwards;
+  color: white;
+`;
 
 class Banner extends Component {
-  state = {
-    hidethis: 1
-  };
-
   render() {
     return (
       <StyledBannerHolder>
-        <h1 hidethis={this.state.hidethis}>Short Term Suites</h1>
+        <StyledH1>Short Term Suites</StyledH1>
       </StyledBannerHolder>
     );
   }
