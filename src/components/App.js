@@ -6,6 +6,11 @@ import Availability from "./Availability";
 import "../css/App.css";
 import { Route } from "react-router-dom";
 import base from "../base";
+import { injectGlobal } from "styled-components";
+
+injectGlobal`
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script|Lobster|Marck+Script|Yellowtail');
+`;
 
 class App extends Component {
   state = {
