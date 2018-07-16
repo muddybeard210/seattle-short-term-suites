@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import MainNav from "./MainNav";
 import About from "./About";
+import Home from "./Home";
 import Availability from "./Availability";
 import "../css/App.css";
 import { Route } from "react-router-dom";
@@ -32,7 +33,8 @@ class App extends Component {
             component={Availability}
           />
           <Route exact path={`/app/availability/`} component={Availability} />
-          <Route path={"/app/About"} component={About} />
+          <Route exact path={"/app/About"} component={About} />
+          <Route exact path={"/app/Home"} component={Home} />
         </div>
       </div>
     );
