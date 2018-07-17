@@ -6,7 +6,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <Banner />
+        <Banner header="Short Term Suites" subhead="Where Seattle Sleeps..." />
       </div>
     );
   }

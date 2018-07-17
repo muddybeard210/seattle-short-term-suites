@@ -19,7 +19,7 @@ const StyledBannerHolder = styled.div`
     background-position-y: 0px;
   }
 `;
-const fadeIn = keyframes`
+const fadeInHeader = keyframes`
   from {
     opacity: 0;
     margin-top: 0px;
@@ -30,19 +30,30 @@ const fadeIn = keyframes`
     margin-top: 100px;
   }
 `;
+const fadeInText = keyframes`
+  from {
+    opacity: 0;
+    margin-top: -70px;
+  }
+
+  to {
+    opacity: 1;
+    margin-top: 10px;
+  }
+`;
 
 const StyledH1 = styled.h1`
   transition: all 2s;
-  font-size: 60px;
-  animation: ${fadeIn} 2s forwards;
+  font-size: 80px;
+  animation: ${fadeInHeader} 2s forwards;
   animation-delay: 0.25s;
   opacity: 0;
   color: white;
 `;
 const StyledH2 = StyledH1.extend`
   font-size: 40px;
-  animation: ${fadeIn} 2s forwards;
-  animation-delay: 0.45s;
+  animation: ${fadeInText} 2s forwards;
+  animation-delay: 1s;
   opacity: 0;
   color: white;
 `;
@@ -51,8 +62,8 @@ class Banner extends Component {
   render() {
     return (
       <StyledBannerHolder>
-        <StyledH1>Short Term Suites</StyledH1>
-        <StyledH2>Where Seattle Sleeps...</StyledH2>
+        <StyledH1>{this.props.header}</StyledH1>
+        <StyledH2>{this.props.subhead}</StyledH2>
       </StyledBannerHolder>
     );
   }
