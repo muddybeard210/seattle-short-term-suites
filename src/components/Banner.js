@@ -14,6 +14,9 @@ const StyledBannerHolder = styled.div`
   flex-direction: column;
   align-items: center;
   /* align-items: center; */
+  & > div {
+    text-align: center;
+  }
 
   @media screen and (max-width: 1560px) {
     background-position-y: 0px;
@@ -41,10 +44,21 @@ const fadeInText = keyframes`
     margin-top: 10px;
   }
 `;
+const fadeInTagLine = keyframes`
+  from {
+    opacity: 0;
+    margin-top: 0px;
+  }
+
+  to {
+    opacity: 1;
+    margin-top: 210px;
+  }
+`;
 
 const StyledH1 = styled.h1`
   transition: all 2s;
-  font-size: 80px;
+  font-size: 60px;
   animation: ${fadeInHeader} 2s forwards;
   animation-delay: 0.25s;
   opacity: 0;
@@ -58,12 +72,36 @@ const StyledH2 = StyledH1.extend`
   color: white;
 `;
 
+const StyledTagLine = StyledH2.extend`
+  animation: ${fadeInTagLine} 3s forwards;
+  animation-delay: 1.5s;
+`;
+
+const StyledHorzDiv = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+`;
+
 class Banner extends Component {
   render() {
     return (
       <StyledBannerHolder>
-        <StyledH1>{this.props.header}</StyledH1>
-        <StyledH2>{this.props.subhead}</StyledH2>
+        <div>
+          <StyledH1>{this.props.header}</StyledH1>
+          <StyledH2>{this.props.subhead}</StyledH2>
+        </div>
+        <StyledHorzDiv>
+          <div>
+            <StyledTagLine>{this.props.subhead}</StyledTagLine>
+          </div>
+          <div>
+            <StyledTagLine>{this.props.subhead}</StyledTagLine>
+          </div>
+          <div>
+            <StyledTagLine>{this.props.subhead}</StyledTagLine>
+          </div>
+        </StyledHorzDiv>
       </StyledBannerHolder>
     );
   }
