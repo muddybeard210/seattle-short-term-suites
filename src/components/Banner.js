@@ -81,6 +81,9 @@ const StyledHorzDiv = styled.div`
   display: flex;
   justify-content: space-around;
   width: 100%;
+  & > div {
+    width: 33%;
+  }
 `;
 
 class Banner extends Component {
@@ -93,13 +96,13 @@ class Banner extends Component {
         </div>
         <StyledHorzDiv>
           <div>
-            <StyledTagLine>{this.props.subhead}</StyledTagLine>
+            <StyledTagLine>Locally Owned</StyledTagLine>
           </div>
           <div>
-            <StyledTagLine>{this.props.subhead}</StyledTagLine>
+            <StyledTagLine>Over 80 units around Seattle</StyledTagLine>
           </div>
           <div>
-            <StyledTagLine>{this.props.subhead}</StyledTagLine>
+            <StyledTagLine>Fully Furnished</StyledTagLine>
           </div>
         </StyledHorzDiv>
       </StyledBannerHolder>
