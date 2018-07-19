@@ -91,7 +91,7 @@ class EditFishForm extends Component {
               <option value="available">Available</option>
               <option value="unavailable">Unavailable</option>
             </select>
-            <label htmlFor="nextAvailableDate">Address</label>
+            <label htmlFor="nextAvailableDate">Next Available Date</label>
             <input
               name="nextAvailableDate"
               value={this.props.suite.nextAvailableDate}
