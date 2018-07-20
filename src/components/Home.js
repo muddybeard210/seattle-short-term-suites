@@ -8,7 +8,11 @@ const StyledSuiteCardHolder = styled.div`
   display: flex;
   justify-content: space-around;
   width: 100%;
+  max-width: 1080px;
+  margin: auto;
   flex-wrap: wrap;
+  padding-top: 50px;
+  padding-bottom: 50px;
 `;
 
 class Home extends Component {
