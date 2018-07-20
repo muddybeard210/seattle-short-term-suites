@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const StyledCardWrapper = styled.div`
   display: flex;
+  margin-bottom: 40px;
   flex-direction: column;
   align-items: center;
   width: 300px;
@@ -18,6 +19,7 @@ const StyledCardImageWrapper = styled.div`
   background-size: 100%;
   background-position: center;
   transition: all 0.1s ease-in;
+  background-repeat: no-repeat;
   &:hover {
     background-size: 110%;
   }
