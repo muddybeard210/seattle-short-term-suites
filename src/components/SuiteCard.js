@@ -40,8 +40,14 @@ const StyledAvailabilitySign = styled.div`
   margin: 10px;
 `;
 
+const StyledAmens = StyledAvailabilitySign.extend`
+  background-color: #6c757d;
+`;
+const StyledAmensHolder = styled.div`
+  display: inline;
+`;
 const StyledDescHolder = styled.div`
-  text-align: justify;
+  /* text-align: justify; */
   padding: 10px;
 `;
 
@@ -63,6 +69,11 @@ class SuiteCard extends Component {
         <StyledDescHolder>
           <p>{this.props.suite.desc.slice(0, 230)}...</p>
         </StyledDescHolder>
+        <div>
+          <StyledAmens>4 Bed</StyledAmens>
+          <StyledAmens>4 bath</StyledAmens>
+          <StyledAmens>4 Park</StyledAmens>
+        </div>
       </StyledCardWrapper>
     );
   }
