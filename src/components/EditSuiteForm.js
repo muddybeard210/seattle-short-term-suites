@@ -106,6 +106,51 @@ class EditFishForm extends Component {
               placeholder="Desc"
               onChange={this.handleChange}
             />
+            <div>
+              <label htmlFor="numberOfBeds">
+                <i class="fas fa-bath" />
+              </label>
+              <input
+                type="number"
+                name="numberOfBeds"
+                value={
+                  this.props.suite.numberOfBeds
+                    ? this.props.suite.numberOfBeds
+                    : "0"
+                }
+                onChange={this.handleChange}
+              />
+            </div>
+            <div>
+              <label htmlFor="numberOfBath">
+                <i class="fas fa-bed" />
+              </label>
+              <input
+                type="number"
+                name="numberOfBath"
+                value={
+                  this.props.suite.numberOfBath
+                    ? this.props.suite.numberOfBath
+                    : "0"
+                }
+                onChange={this.handleChange}
+              />
+            </div>
+            <div>
+              <label htmlFor="numberOfParking">
+                <i class="fas fa-car" />
+              </label>
+              <input
+                type="number"
+                name="numberOfParking"
+                value={
+                  this.props.suite.numberOfParking
+                    ? this.props.suite.numberOfParking
+                    : "0"
+                }
+                onChange={this.handleChange}
+              />
+            </div>
           </FlexDiv>
         </div>
         <PictureHolderDiv>
