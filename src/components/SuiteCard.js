@@ -70,9 +70,24 @@ class SuiteCard extends Component {
           <p>{this.props.suite.desc.slice(0, 230)}...</p>
         </StyledDescHolder>
         <div>
-          <StyledAmens>4 Bed</StyledAmens>
-          <StyledAmens>4 bath</StyledAmens>
-          <StyledAmens>4 Park</StyledAmens>
+          <StyledAmens>
+            {this.props.suite.numberOfBeds
+              ? this.props.suite.numberOfBeds
+              : "0"}{" "}
+            Bed
+          </StyledAmens>
+          <StyledAmens>
+            {this.props.suite.numberOfBath
+              ? this.props.suite.numberOfBath
+              : "0"}{" "}
+            Bath
+          </StyledAmens>
+          <StyledAmens>
+            {this.props.suite.numberOfParking
+              ? this.props.suite.numberOfParking
+              : "0"}{" "}
+            Park
+          </StyledAmens>
         </div>
       </StyledCardWrapper>
     );

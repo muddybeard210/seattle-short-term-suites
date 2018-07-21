@@ -44,14 +44,17 @@ class Home extends Component {
           <h1>Current Properties</h1>
         </StyledSectionHeader>
         <StyledSuiteCardHolder>
-          {Object.keys(this.state.suites).map(key => (
-            <SuiteCard
-              key={key}
-              index={key}
-              name={key}
-              suite={this.state.suites[key]}
-            />
-          ))}
+          {Object.keys(this.state.suites).map(
+            key =>
+              this.state.suites[key].status === "available" ? (
+                <SuiteCard
+                  key={key}
+                  index={key}
+                  name={key}
+                  suite={this.state.suites[key]}
+                />
+              ) : null
+          )}
         </StyledSuiteCardHolder>
       </div>
     );

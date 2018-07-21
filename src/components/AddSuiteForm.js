@@ -7,9 +7,8 @@ import styled from "styled-components";
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 85%;
   justify-content: space-around;
-  max-height: 600px;
 
   & > input {
     border: 1px solid grey;
@@ -37,6 +36,9 @@ class AddSuiteForm extends Component {
   addressLineOne = React.createRef();
   addressLineTwo = React.createRef();
   nextAvailableDate = React.createRef();
+  numberOfBeds = React.createRef();
+  numberOfBath = React.createRef();
+  numberOfParking = React.createRef();
 
   handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });
   handleProgress = progress => this.setState({ progress });
@@ -84,7 +86,10 @@ class AddSuiteForm extends Component {
       image: this.state.pictures,
       addressLineOne: this.addressLineOne.current.value,
       addressLineTwo: this.addressLineTwo.current.value,
-      nextAvailableDate: this.nextAvailableDate.current.value
+      nextAvailableDate: this.nextAvailableDate.current.value,
+      numberOfBeds: this.numberOfBeds.current.value,
+      numberOfBath: this.numberOfBath.current.value,
+      numberOfParking: this.numberOfParking.current.value
     };
     this.props.addSuite(suite);
     this.startUploadManually();
@@ -149,6 +154,24 @@ class AddSuiteForm extends Component {
           placeholder="Next Available Date"
         />
         <textarea name="desc" ref={this.descInput} placeholder="Desc" />
+        <div>
+          <label htmlFor="numberOfBeds">
+            <i class="fas fa-bath" />
+          </label>
+          <input type="number" name="numberOfBeds" />
+        </div>
+        <div>
+          <label htmlFor="numberOfBath">
+            <i class="fas fa-bed" />
+          </label>
+          <input type="number" name="numberOfBath" />
+        </div>
+        <div>
+          <label htmlFor="numberOfParking">
+            <i class="fas fa-car" />
+          </label>
+          <input type="number" name="numberOfParking" />
+        </div>
         <FileUploadInput
           ref={this.imageInput}
           handleUploadStart={this.handleUploadStart}
