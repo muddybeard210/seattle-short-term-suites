@@ -8,7 +8,7 @@ const StyledSuiteCardHolder = styled.div`
   display: flex;
   justify-content: space-around;
   width: 100%;
-  max-width: 1080px;
+  max-width: 1280px;
   margin: auto;
   flex-wrap: wrap;
   padding-top: 50px;

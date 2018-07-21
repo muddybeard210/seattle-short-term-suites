@@ -6,27 +6,45 @@ const StyledCardWrapper = styled.div`
   margin-bottom: 40px;
   flex-direction: column;
   align-items: center;
-  width: 300px;
-  max-width: 300px;
-  min-height: 500px;
+  width: 400px;
+  min-height: 600px;
   border: 1px solid lightgrey;
   border-radius: 4px;
+  &:hover {
+    & > div {
+      background-size: 130%;
+    }
+  }
 `;
 const StyledCardImageWrapper = styled.div`
-  height: 200px;
+  height: 300px;
   background: url(${props => props.imageBackground});
   width: 100%;
-  background-size: 100%;
+  background-size: 120%;
   background-position: center;
   transition: all 0.1s ease-in;
   background-repeat: no-repeat;
-  &:hover {
-    background-size: 110%;
-  }
 `;
 const StyledAvailabilitySign = styled.div`
-  background-color: ${props => (props.available ? "green" : "red")};
+  background-color: ${props => (props.available ? "#28a745" : "#dc3545")};
+  display: inline-block;
+  padding: 0.25em 0.4em;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  color: #fff;
+  margin: 10px;
 `;
+
+const StyledDescHolder = styled.div`
+  text-align: justify;
+  padding: 10px;
+`;
+
 class SuiteCard extends Component {
   state = {};
   render() {
@@ -34,11 +52,17 @@ class SuiteCard extends Component {
       <StyledCardWrapper>
         <StyledCardImageWrapper imageBackground={this.props.suite.image[0].url}>
           <StyledAvailabilitySign
-            available={this.props.suite.status == "available" ? true : false}
+            available={this.props.suite.status === "available" ? true : false}
           >
             {this.props.suite.status}
           </StyledAvailabilitySign>
         </StyledCardImageWrapper>
+        <div>
+          <h3>{this.props.suite.name}</h3>
+        </div>
+        <StyledDescHolder>
+          <p>{this.props.suite.desc.slice(0, 230)}...</p>
+        </StyledDescHolder>
       </StyledCardWrapper>
     );
   }
