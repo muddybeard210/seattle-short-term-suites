@@ -11,6 +11,7 @@ const StyledCardWrapper = styled.div`
   min-height: 600px;
   border: 1px solid lightgrey;
   border-radius: 4px;
+  padding-bottom: 20px;
   cursor: pointer;
   &:hover {
     & > div {
@@ -42,11 +43,18 @@ const StyledAvailabilitySign = styled.div`
   margin: 10px;
 `;
 
-const StyledAmens = StyledAvailabilitySign.extend`
-  background-color: #6c757d;
-`;
-const StyledAmensHolder = styled.div`
-  display: inline;
+const StyledSpan = styled.span`
+  color: #fff;
+  background-color: #007bff;
+  display: inline-block;
+  padding: 0.25em 0.4em;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
 `;
 const StyledDescHolder = styled.div`
   /* text-align: justify; */
@@ -72,6 +80,11 @@ class SuiteCard extends Component {
         <StyledDescHolder>
           <p>{this.props.suite.desc.slice(0, 230)}...</p>
         </StyledDescHolder>
+        <div>
+          <StyledSpan className="badge badge-primary">
+            {this.props.suite.price} / Per Month
+          </StyledSpan>
+        </div>
       </StyledCardWrapper>
     );
   }

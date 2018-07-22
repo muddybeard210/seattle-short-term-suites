@@ -19,27 +19,41 @@ const StyledForm = styled.form`
 `;
 
 class RefineSearch extends Component {
-  state = {};
+  state = {
+    prefs: {}
+  };
 
   bedroomsInput = React.createRef();
   bathroomsInput = React.createRef();
   parkingInput = React.createRef();
+  componentWillUnmount() {
+    window.localStorage.setItem("prefs", JSON.stringify(this.state.prefs));
+  }
+  componentDidMount() {
+    const prefs = window.localStorage.getItem("prefs");
 
+    if (prefs) {
+      this.setState({
+        prefs: JSON.parse(prefs)
+      });
+    }
+  }
   handleChange = () => {
     const filteredResults = {
       bedrooms: this.bedroomsInput.current.value,
       bathrooms: this.bathroomsInput.current.value,
       parking: this.parkingInput.current.value
     };
-    console.log("filteredResults:", filteredResults);
-    console.log("this.bedroomsInput", this.bedroomsInput);
     this.props.handleRefine(filteredResults);
+    this.setState({
+      prefs: filteredResults
+    });
   };
 
   render() {
     return (
       <StyledForm action="">
-        <h4>Refine Your Results</h4>
+        <h4>Filter Your Results</h4>
         <div>
           <label htmlFor="bedrooms">
             {" "}
@@ -49,6 +63,7 @@ class RefineSearch extends Component {
             onChange={this.handleChange}
             name="bedrooms"
             innerRef={this.bedroomsInput}
+            value={this.state.prefs.bedrooms}
           >
             <option value="0">0</option>
             <option value="1">1</option>
@@ -67,6 +82,7 @@ class RefineSearch extends Component {
             name="bathrooms"
             onChange={this.handleChange}
             innerRef={this.bathroomsInput}
+            value={this.state.prefs.bathrooms}
           >
             <option value="0">0</option>
             <option value="1">1</option>
@@ -85,6 +101,7 @@ class RefineSearch extends Component {
             name="parking"
             onChange={this.handleChange}
             innerRef={this.parkingInput}
+            value={this.state.prefs.parking}
           >
             <option value="0">0</option>
             <option value="1">1</option>
