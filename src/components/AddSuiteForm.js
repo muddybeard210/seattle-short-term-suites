@@ -120,34 +120,44 @@ class AddSuiteForm extends Component {
       <StyledForm action="" className="suite-edit" onSubmit={this.createSuite}>
         {/* <StyledForm action="" className="suite-edit" onSubmit={this.testSomething}> */}
         <input
+          required
           name="name"
           ref={this.nameInput}
           type="text"
           placeholder="Name"
         />
         <input
+          required
           name="price"
           ref={this.priceInput}
           type="text"
           placeholder="Price"
         />
         <input
+          required
           type="text"
           name="addressLineOne"
           ref={this.addressLineOne}
           placeholder="Address Line 1"
         />
         <input
+          required
           type="text"
           name="addressLineTwo"
           ref={this.addressLineTwo}
           placeholder="Address Line 2"
         />
-        <select name="status" ref={this.statusInput} placeholder="Status">
+        <select
+          required
+          name="status"
+          ref={this.statusInput}
+          placeholder="Status"
+        >
           <option value="available">Available</option>
           <option value="unavailable">Unavailable</option>
         </select>
         <input
+          required
           type="date"
           name="nextAvailableDate"
           ref={this.nextAvailableDate}
@@ -156,21 +166,21 @@ class AddSuiteForm extends Component {
         <textarea name="desc" ref={this.descInput} placeholder="Desc" />
         <div>
           <label htmlFor="numberOfBeds">
-            <i class="fas fa-bath" />
+            <i class="fas fa-bed" />
           </label>
-          <input type="number" name="numberOfBeds" />
+          <input required type="number" name="numberOfBeds" />
         </div>
         <div>
           <label htmlFor="numberOfBath">
-            <i class="fas fa-bed" />
+            <i class="fas fa-bath" />
           </label>
-          <input type="number" name="numberOfBath" />
+          <input required type="number" name="numberOfBath" />
         </div>
         <div>
           <label htmlFor="numberOfParking">
             <i class="fas fa-car" />
           </label>
-          <input type="number" name="numberOfParking" />
+          <input required type="number" name="numberOfParking" />
         </div>
         <FileUploadInput
           ref={this.imageInput}
