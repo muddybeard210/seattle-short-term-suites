@@ -71,18 +71,21 @@ class SuiteCard extends Component {
         </StyledDescHolder>
         <div>
           <StyledAmens>
+            <i class="fas fa-bath" />{" "}
             {this.props.suite.numberOfBeds
               ? this.props.suite.numberOfBeds
               : "0"}{" "}
             Bed
           </StyledAmens>
           <StyledAmens>
+            <i class="fas fa-bed" />{" "}
             {this.props.suite.numberOfBath
               ? this.props.suite.numberOfBath
               : "0"}{" "}
             Bath
           </StyledAmens>
           <StyledAmens>
+            <i class="fas fa-car" />{" "}
             {this.props.suite.numberOfParking
               ? this.props.suite.numberOfParking
               : "0"}{" "}
