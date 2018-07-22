@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import SuiteCard from "./SuiteCard";
+import RefineSearch from "./RefineSearch";
 import styled from "styled-components";
 
 const StyledSuiteCardHolder = styled.div`
@@ -22,17 +23,38 @@ const StyledSectionHeader = styled.div`
 `;
 
 class CurrentProperties extends Component {
-  state = {};
+  state = {
+    filteredResults: {
+      bedrooms: 0,
+      bathrooms: 0,
+      parking: 0
+    }
+  };
+
+  handleRefine = updatedFilteredResults => {
+    this.setState({
+      filteredResults: updatedFilteredResults
+    });
+  };
   render() {
     return (
       <div>
         <StyledSectionHeader>
           <h1>Current Properties</h1>
         </StyledSectionHeader>
+        <StyledSectionHeader>
+          <RefineSearch handleRefine={this.handleRefine} />
+        </StyledSectionHeader>
         <StyledSuiteCardHolder>
           {Object.keys(this.props.suites).map(
             key =>
-              this.props.suites[key].status === "available" ? (
+              this.props.suites[key].status === "available" &&
+              this.props.suites[key].numberOfBath >=
+                this.state.filteredResults.bathrooms &&
+              this.props.suites[key].numberOfBeds >=
+                this.state.filteredResults.bedrooms &&
+              this.props.suites[key].numberOfParking >=
+                this.state.filteredResults.parking ? (
                 <SuiteCard
                   key={key}
                   index={key}

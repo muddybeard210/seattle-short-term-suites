@@ -26,17 +26,17 @@ class SuiteCardAmens extends Component {
     return (
       <div>
         <StyledAmens>
-          <i class="fas fa-bath" />{" "}
+          <i className="fas fa-bed" />{" "}
           {this.props.suite.numberOfBeds ? this.props.suite.numberOfBeds : "0"}{" "}
           Bed
         </StyledAmens>
         <StyledAmens>
-          <i class="fas fa-bed" />{" "}
+          <i className="fas fa-bath" />{" "}
           {this.props.suite.numberOfBath ? this.props.suite.numberOfBath : "0"}{" "}
           Bath
         </StyledAmens>
         <StyledAmens>
-          <i class="fas fa-car" />{" "}
+          <i className="fas fa-car" />{" "}
           {this.props.suite.numberOfParking
             ? this.props.suite.numberOfParking
             : "0"}{" "}
