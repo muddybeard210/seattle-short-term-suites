@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import SuiteCardAmens from "./SuiteCardAmens";
 
 const StyledCardWrapper = styled.div`
   display: flex;
@@ -10,6 +11,7 @@ const StyledCardWrapper = styled.div`
   min-height: 600px;
   border: 1px solid lightgrey;
   border-radius: 4px;
+  cursor: pointer;
   &:hover {
     & > div {
       background-size: 130%;
@@ -22,7 +24,7 @@ const StyledCardImageWrapper = styled.div`
   width: 100%;
   background-size: 120%;
   background-position: center;
-  transition: all 0.1s ease-in;
+  transition: all 0.4s ease;
   background-repeat: no-repeat;
 `;
 const StyledAvailabilitySign = styled.div`
@@ -66,35 +68,15 @@ class SuiteCard extends Component {
         <div>
           <h3>{this.props.suite.name}</h3>
         </div>
+        <SuiteCardAmens suite={this.props.suite} />
         <StyledDescHolder>
           <p>{this.props.suite.desc.slice(0, 230)}...</p>
         </StyledDescHolder>
-        <div>
-          <StyledAmens>
-            <i class="fas fa-bath" />{" "}
-            {this.props.suite.numberOfBeds
-              ? this.props.suite.numberOfBeds
-              : "0"}{" "}
-            Bed
-          </StyledAmens>
-          <StyledAmens>
-            <i class="fas fa-bed" />{" "}
-            {this.props.suite.numberOfBath
-              ? this.props.suite.numberOfBath
-              : "0"}{" "}
-            Bath
-          </StyledAmens>
-          <StyledAmens>
-            <i class="fas fa-car" />{" "}
-            {this.props.suite.numberOfParking
-              ? this.props.suite.numberOfParking
-              : "0"}{" "}
-            Park
-          </StyledAmens>
-        </div>
       </StyledCardWrapper>
     );
   }
 }
+
+export { StyledAvailabilitySign };
 
 export default SuiteCard;
