@@ -39,6 +39,7 @@ class AddSuiteForm extends Component {
   numberOfBeds = React.createRef();
   numberOfBath = React.createRef();
   numberOfParking = React.createRef();
+  squareFeetInput = React.createRef();
 
   handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });
   handleProgress = progress => this.setState({ progress });
@@ -182,6 +183,12 @@ class AddSuiteForm extends Component {
           </label>
           <input required type="number" name="numberOfParking" />
         </div>
+        <label htmlFor="squareFeetInput">Size (Sq Feet)</label>
+        <input
+          type="number"
+          name="squareFeetInput"
+          ref={this.squareFeetInput}
+        />
         <FileUploadInput
           ref={this.imageInput}
           handleUploadStart={this.handleUploadStart}

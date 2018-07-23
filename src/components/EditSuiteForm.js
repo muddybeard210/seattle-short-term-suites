@@ -151,6 +151,19 @@ class EditFishForm extends Component {
                 onChange={this.handleChange}
               />
             </div>
+            <div>
+              <label htmlFor="squareFeetInput">Size (Sq Feet)</label>
+              <input
+                type="number"
+                name="squareFeetInput"
+                value={
+                  this.props.suite.squareFeetInput
+                    ? this.props.suite.squareFeetInput
+                    : "0"
+                }
+                onChange={this.handleChange}
+              />
+            </div>
           </FlexDiv>
         </div>
         <PictureHolderDiv>
