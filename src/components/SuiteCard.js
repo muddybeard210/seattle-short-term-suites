@@ -60,6 +60,13 @@ const StyledDescHolder = styled.div`
   /* text-align: justify; */
   padding: 10px;
 `;
+const StyledName = styled.div`
+  text-align: center;
+  padding-top: 10px;
+  & h3 {
+    border-bottom: solid 1px black;
+  }
+`;
 
 class SuiteCard extends Component {
   state = {};
@@ -73,9 +80,10 @@ class SuiteCard extends Component {
             {this.props.suite.status}
           </StyledAvailabilitySign>
         </StyledCardImageWrapper>
-        <div>
+        <StyledName>
           <h3>{this.props.suite.name}</h3>
-        </div>
+          <p>{this.props.suite.addressLineOne}</p>
+        </StyledName>
         <SuiteCardAmens suite={this.props.suite} />
         <StyledDescHolder>
           <p>{this.props.suite.desc.slice(0, 230)}...</p>

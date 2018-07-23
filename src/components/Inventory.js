@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import LoginPage from "./LoginPage";
-import sampleUnits from "../sample-suites";
 import firebase from "firebase";
 import base, { firebaseApp } from "../base";
 import AddSuiteForm from "./AddSuiteForm";
@@ -84,7 +83,6 @@ class Inventory extends Component {
         this.authHandler({ user });
       }
     });
-    // this.loadSampleUnits();
   }
 
   componentWillUnmount() {
@@ -121,12 +119,6 @@ class Inventory extends Component {
     await firebase.auth().signOut();
     this.setState({
       uid: null
-    });
-  };
-
-  loadSampleUnits = () => {
-    this.setState({
-      suites: sampleUnits
     });
   };
 

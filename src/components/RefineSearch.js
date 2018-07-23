@@ -65,7 +65,7 @@ class RefineSearch extends Component {
             innerRef={this.bedroomsInput}
             value={this.state.prefs.bedrooms}
           >
-            <option value="0">0</option>
+            <option value="0">Any</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -84,7 +84,7 @@ class RefineSearch extends Component {
             innerRef={this.bathroomsInput}
             value={this.state.prefs.bathrooms}
           >
-            <option value="0">0</option>
+            <option value="0">Any</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -103,7 +103,7 @@ class RefineSearch extends Component {
             innerRef={this.parkingInput}
             value={this.state.prefs.parking}
           >
-            <option value="0">0</option>
+            <option value="0">Any</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
