@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Banner from "./Banner";
 import CurrentProperties from "./CurrentProperties";
 import base from "../base";
-import styled from "styled-components";
 
 class Home extends Component {
   state = {
