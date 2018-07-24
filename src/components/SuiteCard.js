@@ -70,9 +70,12 @@ const StyledName = styled.div`
 
 class SuiteCard extends Component {
   state = {};
+  handleClick = () => {
+    this.props.pushToSuite(this.props.suite.name);
+  };
   render() {
     return (
-      <StyledCardWrapper>
+      <StyledCardWrapper onClick={this.handleClick}>
         <StyledCardImageWrapper imageBackground={this.props.suite.image[0].url}>
           <StyledAvailabilitySign
             available={this.props.suite.status === "available" ? true : false}

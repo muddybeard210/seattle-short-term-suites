@@ -30,7 +30,6 @@ class CurrentProperties extends Component {
       parking: 0
     }
   };
-
   handleRefine = updatedFilteredResults => {
     this.setState({
       filteredResults: updatedFilteredResults
@@ -60,6 +59,7 @@ class CurrentProperties extends Component {
                   index={key}
                   name={key}
                   suite={this.props.suites[key]}
+                  pushToSuite={this.props.pushToSuite}
                 />
               ) : null
           )}
