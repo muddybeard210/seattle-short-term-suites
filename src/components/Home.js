@@ -17,11 +17,17 @@ class Home extends Component {
     });
     // this.loadSampleUnits();
   }
+  pushToSuite = name => {
+    this.props.history.push(`/app/suite/${name}`);
+  };
   render() {
     return (
       <div>
         <Banner header="Short Term Suites" subhead="Where Seattle Sleeps..." />
-        <CurrentProperties suites={this.state.suites} />
+        <CurrentProperties
+          suites={this.state.suites}
+          pushToSuite={this.pushToSuite}
+        />
       </div>
     );
   }
