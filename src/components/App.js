@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import MainNav from "./MainNav";
 import About from "./About";
 import Home from "./Home";
+import SuiteMain from "./SuiteMain";
 import Footer from "./Footer";
 import Availability from "./Availability";
 import "../css/App.css";
@@ -40,8 +41,12 @@ class App extends Component {
           />
           <Route exact path={`/app/availability/`} component={Availability} />
           <Route exact path={"/app/About"} component={About} />
-          <Route exact path={"/app/Home"} component={Home} />
-          <Route exact path={"/app/suite/:suiteName"} component={Home} />
+          <Route
+            exact
+            path={"/app/Home"}
+            render={props => <Home {...props} suites={this.state.suites} />}
+          />
+          <Route exact path={"/app/suite/:suiteName"} component={SuiteMain} />
           <Route exact path={"/"} component={Home} />
           {/* <Route component={Home} /> */}
         </div>
