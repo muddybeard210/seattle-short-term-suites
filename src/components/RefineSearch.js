@@ -20,22 +20,31 @@ const StyledForm = styled.form`
 
 class RefineSearch extends Component {
   state = {
-    prefs: {}
+    filteredResults: {
+      bedrooms: 0,
+      bathrooms: 0,
+      parking: 0
+    }
   };
 
   bedroomsInput = React.createRef();
   bathroomsInput = React.createRef();
   parkingInput = React.createRef();
   componentWillUnmount() {
-    window.localStorage.setItem("prefs", JSON.stringify(this.state.prefs));
+    window.localStorage.setItem(
+      "filteredResults",
+      JSON.stringify(this.state.filteredResults)
+    );
   }
   componentDidMount() {
-    const prefs = window.localStorage.getItem("prefs");
-
-    if (prefs) {
-      this.setState({
-        prefs: JSON.parse(prefs)
-      });
+    const filteredResults = window.localStorage.getItem("filteredResults");
+    if (filteredResults) {
+      this.setState(
+        {
+          filteredResults: JSON.parse(filteredResults)
+        },
+        this.handleChange
+      );
     }
   }
   handleChange = () => {
@@ -46,7 +55,7 @@ class RefineSearch extends Component {
     };
     this.props.handleRefine(filteredResults);
     this.setState({
-      prefs: filteredResults
+      filteredResults: filteredResults
     });
   };
 
@@ -63,7 +72,7 @@ class RefineSearch extends Component {
             onChange={this.handleChange}
             name="bedrooms"
             innerRef={this.bedroomsInput}
-            value={this.state.prefs.bedrooms}
+            value={this.state.filteredResults.bedrooms}
           >
             <option value="0">Any</option>
             <option value="1">1</option>
@@ -82,7 +91,7 @@ class RefineSearch extends Component {
             name="bathrooms"
             onChange={this.handleChange}
             innerRef={this.bathroomsInput}
-            value={this.state.prefs.bathrooms}
+            value={this.state.filteredResults.bathrooms}
           >
             <option value="0">Any</option>
             <option value="1">1</option>
@@ -101,7 +110,7 @@ class RefineSearch extends Component {
             name="parking"
             onChange={this.handleChange}
             innerRef={this.parkingInput}
-            value={this.state.prefs.parking}
+            value={this.state.filteredResults.parking}
           >
             <option value="0">Any</option>
             <option value="1">1</option>
