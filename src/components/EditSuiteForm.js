@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import EditSuiteFormPicture from "./EditSuiteFormPicture";
 
 const PictureHolderDiv = styled.div`
   display: flex;
@@ -45,6 +46,19 @@ class EditFishForm extends Component {
   handleDelete = event => {
     this.props.deleteSuite(this.props.index);
   };
+
+  handleDeletePhoto = imageName => {
+    const suite = { ...this.props.suite };
+    console.log("Suite before:", suite.image);
+
+    suite.image = suite.image.filter(function(imageObj) {
+      return imageObj.filename != imageName;
+    });
+    console.log("Suite after:", suite.image);
+    console.log("Suite after name:", suite.name);
+
+    this.props.deleteSuitePhoto(suite.name, suite.image);
+  };
   render() {
     return (
       <StyledWrapper>
@@ -57,6 +71,7 @@ class EditFishForm extends Component {
               onChange={this.handleChange}
               type="text"
               placeholder="Name"
+              readOnly
             />
             <label htmlFor="price">Price Per Month</label>
             <input
@@ -168,7 +183,12 @@ class EditFishForm extends Component {
         </div>
         <PictureHolderDiv>
           {this.props.suite.image.map(imgObj => (
-            <PictureHolderImg key={imgObj.filename} src={imgObj.url} />
+            <EditSuiteFormPicture
+              key={imgObj.filename}
+              imageSource={imgObj.url}
+              fileName={imgObj.filename}
+              handleDeletePhoto={this.handleDeletePhoto}
+            />
           ))}
         </PictureHolderDiv>
         <StyledDeleteButton

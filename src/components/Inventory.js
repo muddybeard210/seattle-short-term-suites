@@ -88,6 +88,7 @@ class Inventory extends Component {
   componentWillUnmount() {
     base.removeBinding(this.databaseReference);
   }
+
   authHandler = async authData => {
     //1.  Look up current store in the firebase database
     const store = await base.fetch("short-term-suites", { context: this });
@@ -126,7 +127,7 @@ class Inventory extends Component {
     // 1. Take copy of existing state
     const suites = { ...this.state.suites };
     // 2. Add new suite to suites variable
-    suites[`suite${Date.now()}`] = suite;
+    suites[`${suite.name}`] = suite;
     // 3. Set the new suites object to state;
     this.setState({
       suites: suites
@@ -145,6 +146,13 @@ class Inventory extends Component {
   deleteSuite = key => {
     const suites = { ...this.state.suites };
     suites[key] = null;
+    this.setState({
+      suites: suites
+    });
+  };
+  deleteSuitePhoto = (key, newImages) => {
+    const suites = { ...this.state.suites };
+    suites[key].image = newImages;
     this.setState({
       suites: suites
     });
@@ -180,6 +188,7 @@ class Inventory extends Component {
               suite={this.state.suites[key]}
               updateSuite={this.updateSuite}
               deleteSuite={this.deleteSuite}
+              deleteSuitePhoto={this.deleteSuitePhoto}
             />
           ))}
         </RightSideContent>

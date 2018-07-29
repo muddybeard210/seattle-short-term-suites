@@ -169,19 +169,34 @@ class AddSuiteForm extends Component {
           <label htmlFor="numberOfBeds">
             <i class="fas fa-bed" />
           </label>
-          <input required type="number" name="numberOfBeds" />
+          <input
+            required
+            type="number"
+            name="numberOfBeds"
+            ref={this.numberOfBeds}
+          />
         </div>
         <div>
           <label htmlFor="numberOfBath">
             <i class="fas fa-bath" />
           </label>
-          <input required type="number" name="numberOfBath" />
+          <input
+            required
+            type="number"
+            name="numberOfBath"
+            ref={this.numberOfBath}
+          />
         </div>
         <div>
           <label htmlFor="numberOfParking">
             <i class="fas fa-car" />
           </label>
-          <input required type="number" name="numberOfParking" />
+          <input
+            required
+            type="number"
+            name="numberOfParking"
+            ref={this.numberOfParking}
+          />
         </div>
         <label htmlFor="squareFeetInput">Size (Sq Feet)</label>
         <input
