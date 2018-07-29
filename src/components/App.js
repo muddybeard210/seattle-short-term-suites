@@ -46,7 +46,13 @@ class App extends Component {
             path={"/app/Home"}
             render={props => <Home {...props} suites={this.state.suites} />}
           />
-          <Route exact path={"/app/suite/:suiteName"} component={SuiteMain} />
+          <Route
+            exact
+            path={"/app/suite/:suiteName"}
+            render={props => (
+              <SuiteMain {...props} suites={this.state.suites} />
+            )}
+          />
           <Route exact path={"/"} component={Home} />
           {/* <Route component={Home} /> */}
         </div>
