@@ -47,89 +47,10 @@ class FileUploadInput extends Component {
   };
   startUploadManually = event => {
     const { files } = this.state;
-    Promise.all(
-      files.map(file => {
-        this.fileUploader.startUpload(file);
-      })
-    )
-      .then(returnValue => {
-        console.log("promise over!");
-        console.log(returnValue);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
-  runTest = event => {
-    event.preventDefault();
-    const { files } = this.state;
-    const promises = [];
-    const downloadUrls = [];
-    files.forEach(file => {
-      const uploadTask = firebase
-        .storage()
-        .ref()
-        .child("images")
-        .put(file);
-      promises.push(uploadTask);
-
-      uploadTask.on(
-        "state_changed",
-        snapshot => {
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log(progress);
-        },
-        error => {
-          console.log(error);
-        },
-        () => {
-          firebase
-            .storage()
-            .ref()
-            .child(`images/${file.name}`)
-            .getDownloadURL()
-            .then(url => {
-              // this.props.updatePictures(url, file.name);
-              console.log("url: ", url);
-            });
-        }
-      );
+    files.map(file => {
+      this.fileUploader.startUpload(file);
     });
-
-    Promise.all(promises).then(tasks => {
-      console.log("all uploads complete");
-      console.log(downloadUrls);
-    });
-
-    // this.startUploadManually();
-
-    // Promise.all(
-    //   // Array of "Promises"
-    // .map(item => putStorageItem(item))
-    // )
-    // .then((url) => {
-    //   console.log(`All success`)
-    // })
-    // .catch((error) => {
-    //   console.log(`Some failed: `, error.message)
-    // });
-    console.log(this.newFileUploader.files);
   };
-  putStorageItem = item => {
-    // the return value will be a Promise
-    return firebase
-      .storage()
-      .ref("images")
-      .put(item)
-      .then(snapshot => {
-        console.log("One success:", item);
-      })
-      .catch(error => {
-        console.log("One failed:", item, error.message);
-      });
-  };
-
   render() {
     return (
       <div>
@@ -143,21 +64,7 @@ class FileUploadInput extends Component {
           onUploadError={this.handleUploadError}
           onUploadSuccess={this.handleUploadSuccess}
           onProgress={this.handleProgress}
-          onChange={this.handleOnChange}
-          ref={instance => {
-            this.fileUploader = instance;
-          }}
         />
-        <input
-          type="file"
-          multiple
-          ref={instance => {
-            this.newFileUploader = instance;
-          }}
-          onChange={this.handleOnChange}
-          name="fileupload"
-        />
-        <button onClick={this.runTest}>Upload pics</button>
       </div>
     );
   }

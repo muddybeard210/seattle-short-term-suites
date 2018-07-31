@@ -75,13 +75,7 @@ class AddSuiteForm extends Component {
       numberOfParking: this.numberOfParking.current.value
     };
     this.props.addSuite(suite);
-    this.startUploadManually()
-      .then(result => {
-        console.log("done!");
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    // this.startUploadManually();
     event.currentTarget.reset();
   };
 

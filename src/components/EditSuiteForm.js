@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import EditSuiteFormPicture from "./EditSuiteFormPicture";
+import FileUploadInput from "./FileUploadInput";
+import firebase from "firebase";
 
 const PictureHolderDiv = styled.div`
   display: flex;
@@ -32,7 +34,9 @@ const StyledDeleteButton = styled.button`
 `;
 
 class EditFishForm extends Component {
-  state = {};
+  state = {
+    pictures: []
+  };
   componentDidMount() {
     console.log("image:", this.props.suite.image);
   }
@@ -58,6 +62,17 @@ class EditFishForm extends Component {
     console.log("Suite after name:", suite.name);
 
     this.props.deleteSuitePhoto(suite.name, suite.image);
+  };
+  updatePictures = (url, filename) => {
+    const suite = { ...this.props.suite };
+
+    const storedFile = {
+      filename: filename,
+      url: url
+    };
+    console.log("url:", url);
+    suite.image.push(storedFile);
+    this.props.updateSuite(this.props.index, suite);
   };
   render() {
     return (
@@ -181,6 +196,10 @@ class EditFishForm extends Component {
             </div>
           </FlexDiv>
         </div>
+        <FileUploadInput
+          storageRef={firebase.storage().ref("images")}
+          updatePictures={this.updatePictures}
+        />
         <PictureHolderDiv>
           {this.props.suite.image.map(imgObj => (
             <EditSuiteFormPicture
