@@ -167,10 +167,10 @@ class AddSuiteForm extends Component {
           name="squareFeetInput"
           ref={this.squareFeetInput}
         />
-        <FileUploadInput
+        {/* <FileUploadInput
           storageRef={firebase.storage().ref("images")}
           updatePictures={this.updatePictures}
-        />
+        /> */}
         <button className="btn btn-success" type="submit">
           Add Suite
         </button>

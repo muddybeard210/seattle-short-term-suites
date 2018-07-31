@@ -76,7 +76,11 @@ class SuiteCard extends Component {
   render() {
     return (
       <StyledCardWrapper onClick={this.handleClick}>
-        <StyledCardImageWrapper imageBackground={this.props.suite.image[0].url}>
+        <StyledCardImageWrapper
+          imageBackground={
+            this.props.suite.image ? this.props.suite.image[0].url : null
+          }
+        >
           <StyledAvailabilitySign
             available={this.props.suite.status === "available" ? true : false}
           >
