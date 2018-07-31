@@ -7,7 +7,9 @@ import styled from "styled-components";
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  height: 85%;
+  height: 100%;
+  overflow-y: scroll;
+  min-height: 1000px;
   justify-content: space-around;
 
   & > input {
@@ -41,13 +43,6 @@ class AddSuiteForm extends Component {
   numberOfParking = React.createRef();
   squareFeetInput = React.createRef();
 
-  handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });
-  handleProgress = progress => this.setState({ progress });
-  handleUploadError = error => {
-    this.setState({ isUploading: false });
-    console.error(error);
-  };
-
   updatePictures = (url, filename) => {
     const pictures = this.state.pictures;
     const storedFile = {
@@ -59,19 +54,6 @@ class AddSuiteForm extends Component {
     this.setState({
       pictures
     });
-  };
-
-  handleUploadSuccess = filename => {
-    console.log("Upload successful", filename);
-    this.setState({ avatar: filename, progress: 100, isUploading: false });
-    firebase
-      .storage()
-      .ref()
-      .child(`images/${filename}`)
-      .getDownloadURL()
-      .then(url => {
-        this.updatePictures(url, filename);
-      });
   };
 
   createSuite = event => {
@@ -93,29 +75,10 @@ class AddSuiteForm extends Component {
       numberOfParking: this.numberOfParking.current.value
     };
     this.props.addSuite(suite);
-    this.startUploadManually();
+    // this.startUploadManually();
     event.currentTarget.reset();
   };
 
-  handleOnChange = event => {
-    const files = event.target.files;
-    const filesToStore = [];
-
-    files.forEach(file => filesToStore.push(file));
-    this.setState({ files: filesToStore });
-  };
-
-  startUploadManually = () => {
-    const { files } = this.state;
-    files.forEach(file => {
-      this.fileUploader.startUpload(file);
-    });
-  };
-
-  testSomething = event => {
-    event.preventDefault();
-    console.log(this.nameInput);
-  };
   render() {
     return (
       <StyledForm action="" className="suite-edit" onSubmit={this.createSuite}>
@@ -167,7 +130,7 @@ class AddSuiteForm extends Component {
         <textarea name="desc" ref={this.descInput} placeholder="Desc" />
         <div>
           <label htmlFor="numberOfBeds">
-            <i class="fas fa-bed" />
+            <i className="fas fa-bed" />
           </label>
           <input
             required
@@ -178,7 +141,7 @@ class AddSuiteForm extends Component {
         </div>
         <div>
           <label htmlFor="numberOfBath">
-            <i class="fas fa-bath" />
+            <i className="fas fa-bath" />
           </label>
           <input
             required
@@ -189,7 +152,7 @@ class AddSuiteForm extends Component {
         </div>
         <div>
           <label htmlFor="numberOfParking">
-            <i class="fas fa-car" />
+            <i className="fas fa-car" />
           </label>
           <input
             required
@@ -205,14 +168,8 @@ class AddSuiteForm extends Component {
           ref={this.squareFeetInput}
         />
         <FileUploadInput
-          ref={this.imageInput}
-          handleUploadStart={this.handleUploadStart}
-          handleProgress={this.handleProgress}
-          handleUploadError={this.handleUploadError}
-          updatePictures={this.updatePictures}
-          handleUploadSuccess={this.handleUploadSuccess}
           storageRef={firebase.storage().ref("images")}
-          handleOnChange={this.handleOnChange}
+          updatePictures={this.updatePictures}
         />
         <button className="btn btn-success" type="submit">
           Add Suite

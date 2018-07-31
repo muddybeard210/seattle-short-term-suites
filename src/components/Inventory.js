@@ -34,6 +34,8 @@ injectGlobal`
   body {
     font-family: 'Open Sans',sans-serif;
   }
+
+}
 `;
 
 const InventoryHolder = styled.div`
@@ -41,8 +43,7 @@ const InventoryHolder = styled.div`
   margin: auto;
 `;
 const LeftSideContent = styled.div`
-  display: flex;
-  flex-direction: column;
+  overflow-y: scroll;
   width: 20%;
   padding: 10px;
   background-color: #eaeaea;
