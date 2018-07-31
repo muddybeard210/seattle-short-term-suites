@@ -62,7 +62,47 @@ class FileUploadInput extends Component {
   };
   runTest = event => {
     event.preventDefault();
-    this.startUploadManually();
+    const { files } = this.state;
+    const promises = [];
+    const downloadUrls = [];
+    files.forEach(file => {
+      const uploadTask = firebase
+        .storage()
+        .ref()
+        .child("images")
+        .put(file);
+      promises.push(uploadTask);
+
+      uploadTask.on(
+        "state_changed",
+        snapshot => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log(progress);
+        },
+        error => {
+          console.log(error);
+        },
+        () => {
+          firebase
+            .storage()
+            .ref()
+            .child(`images/${file.name}`)
+            .getDownloadURL()
+            .then(url => {
+              // this.props.updatePictures(url, file.name);
+              console.log("url: ", url);
+            });
+        }
+      );
+    });
+
+    Promise.all(promises).then(tasks => {
+      console.log("all uploads complete");
+      console.log(downloadUrls);
+    });
+
+    // this.startUploadManually();
 
     // Promise.all(
     //   // Array of "Promises"
@@ -114,8 +154,8 @@ class FileUploadInput extends Component {
           ref={instance => {
             this.newFileUploader = instance;
           }}
+          onChange={this.handleOnChange}
           name="fileupload"
-          id=""
         />
         <button onClick={this.runTest}>Upload pics</button>
       </div>
