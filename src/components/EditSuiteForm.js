@@ -123,7 +123,7 @@ class EditFishForm extends Component {
             />
             <div>
               <label htmlFor="numberOfBeds">
-                <i class="fas fa-bed" />
+                <i className="fas fa-bed" />
               </label>
               <input
                 type="number"
@@ -138,7 +138,7 @@ class EditFishForm extends Component {
             </div>
             <div>
               <label htmlFor="numberOfBath">
-                <i class="fas fa-bath" />
+                <i className="fas fa-bath" />
               </label>
               <input
                 type="number"
@@ -153,7 +153,7 @@ class EditFishForm extends Component {
             </div>
             <div>
               <label htmlFor="numberOfParking">
-                <i class="fas fa-car" />
+                <i className="fas fa-car" />
               </label>
               <input
                 type="number"
