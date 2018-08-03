@@ -65,13 +65,14 @@ class EditFishForm extends Component {
   };
   updatePictures = (url, filename) => {
     const suite = { ...this.props.suite };
-
+    !suite.image ? (suite.image = []) : null;
     const storedFile = {
       filename: filename,
       url: url
     };
     console.log("url:", url);
     suite.image.push(storedFile);
+
     this.props.updateSuite(this.props.index, suite);
   };
   render() {
@@ -201,14 +202,16 @@ class EditFishForm extends Component {
           updatePictures={this.updatePictures}
         />
         <PictureHolderDiv>
-          {this.props.suite.image.map(imgObj => (
-            <EditSuiteFormPicture
-              key={imgObj.filename}
-              imageSource={imgObj.url}
-              fileName={imgObj.filename}
-              handleDeletePhoto={this.handleDeletePhoto}
-            />
-          ))}
+          {this.props.suite.image
+            ? this.props.suite.image.map(imgObj => (
+                <EditSuiteFormPicture
+                  key={imgObj.filename}
+                  imageSource={imgObj.url}
+                  fileName={imgObj.filename}
+                  handleDeletePhoto={this.handleDeletePhoto}
+                />
+              ))
+            : null}
         </PictureHolderDiv>
         <StyledDeleteButton
           className="btn btn-outline-danger"

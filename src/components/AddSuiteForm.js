@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import FileUploadInput from "./FileUploadInput";
-// import FileUploader from "react-firebase-file-uploader";
-import firebase from "firebase";
+// import FileUploadInput from "./FileUploadInput";
+// // import FileUploader from "react-firebase-file-uploader";
+// import firebase from "firebase";
 import styled from "styled-components";
 
 const StyledForm = styled.form`
@@ -167,10 +167,10 @@ class AddSuiteForm extends Component {
           name="squareFeetInput"
           ref={this.squareFeetInput}
         />
-        <FileUploadInput
+        {/* <FileUploadInput
           storageRef={firebase.storage().ref("images")}
           updatePictures={this.updatePictures}
-        />
+        /> */}
         <button className="btn btn-success" type="submit">
           Add Suite
         </button>

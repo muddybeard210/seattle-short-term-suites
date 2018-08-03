@@ -9,7 +9,9 @@ class FileUploadInput extends Component {
     progress: 0
   };
 
-  handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });
+  handleUploadStart = () => {
+    this.setState({ isUploading: true, progress: 0 });
+  };
 
   handleProgress = progress => {
     console.log("progress", progress);
