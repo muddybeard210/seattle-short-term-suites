@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import FileUploadInput from "./FileUploadInput";
-// import FileUploader from "react-firebase-file-uploader";
-import firebase from "firebase";
+// import FileUploadInput from "./FileUploadInput";
+// // import FileUploader from "react-firebase-file-uploader";
+// import firebase from "firebase";
 import styled from "styled-components";
 
 const StyledForm = styled.form`
