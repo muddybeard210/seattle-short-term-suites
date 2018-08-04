@@ -6,7 +6,7 @@ import SuiteMain from "./SuiteMain";
 import Footer from "./Footer";
 import Availability from "./Availability";
 import "../css/App.css";
-import { Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import base from "../base";
 import { injectGlobal } from "styled-components";
 
@@ -16,7 +16,7 @@ injectGlobal`
 
 class App extends Component {
   state = {
-    suites: {}
+    suites: null
   };
   componentDidMount() {
     const storeID = "short-term-suites";
@@ -35,26 +35,30 @@ class App extends Component {
           <MainNav />
         </div>
         <div>
-          <Route
-            path={`/app/availability/:suiteName`}
-            component={Availability}
-          />
-          <Route exact path={`/app/availability/`} component={Availability} />
-          <Route exact path={"/app/About"} component={About} />
-          <Route
-            exact
-            path={"/app/Home"}
-            render={props => <Home {...props} suites={this.state.suites} />}
-          />
-          <Route
-            exact
-            path={"/app/suite/:suiteName"}
-            render={props => (
-              <SuiteMain {...props} suites={this.state.suites} />
-            )}
-          />
-          <Route exact path={"/"} component={Home} />
-          {/* <Route component={Home} /> */}
+          <Switch>
+            <Route
+              path={`/app/availability/:suiteName`}
+              component={Availability}
+            />
+            <Route exact path={`/app/availability/`} component={Availability} />
+            <Route exact path={"/app/About"} component={About} />
+            <Route
+              exact
+              path={"/app/Home"}
+              render={props => <Home {...props} suites={this.state.suites} />}
+            />
+            {this.state.suites ? (
+              <Route
+                exact
+                path={"/app/suite/:suiteName"}
+                render={props => (
+                  <SuiteMain {...props} suites={this.state.suites} />
+                )}
+              />
+            ) : null}
+            {/* <Route exact path={"/"} component={Home} /> */}
+            <Route component={Home} />
+          </Switch>
         </div>
         <Footer />
       </div>
