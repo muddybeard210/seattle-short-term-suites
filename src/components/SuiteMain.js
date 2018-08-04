@@ -9,22 +9,17 @@ class SuiteMain extends Component {
   state = {
     suite: {}
   };
-  componentWillReceiveProps(nextProps) {
-    console.log("nextProps", nextProps);
-    if (nextProps.suites !== this.props.suites) {
-      this.setState({
-        suite: nextProps.suites[this.props.match.params.suiteName]
-      });
-    }
+  componentWillMount() {
+    const suite = this.props.suites[this.props.match.params.suiteName];
+    this.setState({
+      suite
+    });
   }
+
   render() {
     if (this.state.suite)
       return (
-        <StyledBannerContent
-          imageBackground={
-            this.state.suite.image ? this.state.suite.image[0].url : null
-          }
-        >
+        <StyledBannerContent imageBackground={this.state.suite.image[0].url}>
           <h3>{this.state.suite.name}</h3>
         </StyledBannerContent>
       );
