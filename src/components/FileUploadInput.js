@@ -50,7 +50,7 @@ class FileUploadInput extends Component {
   startUploadManually = event => {
     const { files } = this.state;
     files.map(file => {
-      this.fileUploader.startUpload(file);
+      return this.fileUploader.startUpload(file);
     });
   };
   render() {

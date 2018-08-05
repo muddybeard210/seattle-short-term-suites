@@ -11,10 +11,6 @@ const PictureHolderDiv = styled.div`
   height: 180px;
   background-color: #d3d3d3;
 `;
-const PictureHolderImg = styled.img`
-  height: 90%;
-  padding-right: 20px;
-`;
 const FlexDiv = styled.div`
   display: flex;
   margin-bottom: 10px;
@@ -37,9 +33,7 @@ class EditFishForm extends Component {
   state = {
     pictures: []
   };
-  componentDidMount() {
-    console.log("image:", this.props.suite.image);
-  }
+  componentDidMount() {}
   handleChange = event => {
     const updateSuite = {
       ...this.props.suite,
@@ -53,24 +47,22 @@ class EditFishForm extends Component {
 
   handleDeletePhoto = imageName => {
     const suite = { ...this.props.suite };
-    console.log("Suite before:", suite.image);
 
     suite.image = suite.image.filter(function(imageObj) {
-      return imageObj.filename != imageName;
+      return imageObj.filename !== imageName;
     });
-    console.log("Suite after:", suite.image);
-    console.log("Suite after name:", suite.name);
 
     this.props.deleteSuitePhoto(suite.name, suite.image);
   };
   updatePictures = (url, filename) => {
     const suite = { ...this.props.suite };
-    !suite.image ? (suite.image = []) : null;
+    if (!suite.image) {
+      suite.image = [];
+    }
     const storedFile = {
       filename: filename,
       url: url
     };
-    console.log("url:", url);
     suite.image.push(storedFile);
 
     this.props.updateSuite(this.props.index, suite);
