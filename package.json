@@ -8,9 +8,12 @@
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-firebase-file-uploader": "^2.4.2",
+    "react-geocode": "^0.1.2",
+    "react-google-maps": "^9.4.5",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
     "react-transition-group": "^2.3.1",
+    "recompose": "^0.28.1",
     "styled-components": "^3.3.3",
     "sweetalert2": "^7.26.9"
   },
