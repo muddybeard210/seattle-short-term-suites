@@ -29,6 +29,17 @@ const StyledMapHolder = styled.div`
   max-width: 400px;
 `;
 
+const StyledMapAndDescriptionDiv = styled.div`
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+`;
+
+const StyledSuiteDescContainerDiv = styled.div`
+  max-width: 800px;
+`;
+
 class SuiteMain extends Component {
   state = {
     suite: {},
@@ -84,18 +95,25 @@ class SuiteMain extends Component {
           <StyledBannerContent imageBackground={this.state.imageToShow}>
             <Styledh1>{this.state.suite.name}</Styledh1>
           </StyledBannerContent>
-          <StyledMapHolder>
-            {this.state.mapCoords.lat ? (
-              <SuiteMainMap
-                mapCoords={this.state.mapCoords}
-                isMarkerShown
-                googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPga5vu3m3cf0F2sbSjhMRmayE54qWO1o&v=3.exp&libraries=geometry,drawing,places"
-                loadingElement={<div style={{ height: `100%` }} />}
-                containerElement={<div style={{ height: `400px` }} />}
-                mapElement={<div style={{ height: `100%` }} />}
+          <StyledMapAndDescriptionDiv>
+            <StyledMapHolder>
+              {this.state.mapCoords.lat ? (
+                <SuiteMainMap
+                  mapCoords={this.state.mapCoords}
+                  isMarkerShown
+                  googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPga5vu3m3cf0F2sbSjhMRmayE54qWO1o&v=3.exp&libraries=geometry,drawing,places"
+                  loadingElement={<div style={{ height: `100%` }} />}
+                  containerElement={<div style={{ height: `400px` }} />}
+                  mapElement={<div style={{ height: `100%` }} />}
+                />
+              ) : null}
+            </StyledMapHolder>
+            <StyledSuiteDescContainerDiv>
+              <div
+                dangerouslySetInnerHTML={{ __html: this.state.suite.desc }}
               />
-            ) : null}
-          </StyledMapHolder>
+            </StyledSuiteDescContainerDiv>
+          </StyledMapAndDescriptionDiv>
         </div>
       );
   }

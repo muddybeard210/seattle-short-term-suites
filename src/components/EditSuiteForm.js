@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import EditSuiteFormPicture from "./EditSuiteFormPicture";
 import FileUploadInput from "./FileUploadInput";
+import JoditInput from "./JoditInput";
 import firebase from "firebase";
 
 const PictureHolderDiv = styled.div`
@@ -38,6 +39,14 @@ class EditFishForm extends Component {
     const updateSuite = {
       ...this.props.suite,
       [event.currentTarget.name]: event.currentTarget.value
+    };
+    console.log(event);
+    this.props.updateSuite(this.props.index, updateSuite);
+  };
+  updateDescription = updatedDescription => {
+    const updateSuite = {
+      ...this.props.suite,
+      desc: updatedDescription
     };
     this.props.updateSuite(this.props.index, updateSuite);
   };
@@ -123,11 +132,12 @@ class EditFishForm extends Component {
               placeholder="Next Available Date"
             />
             <label htmlFor="desc">Suite Description</label>
-            <textarea
+            <JoditInput
               name="desc"
-              value={this.props.suite.desc}
-              placeholder="Desc"
-              onChange={this.handleChange}
+              suite={this.props.suite}
+              index={this.props.index}
+              updateDescription={this.updateDescription}
+              currentDesc={this.props.suite.desc}
             />
             <div>
               <label htmlFor="numberOfBeds">

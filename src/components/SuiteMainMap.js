@@ -9,7 +9,7 @@ import {
 const SuiteMainMap = withScriptjs(
   withGoogleMap(props => (
     <GoogleMap
-      defaultZoom={8}
+      defaultZoom={15}
       defaultCenter={{ lat: props.mapCoords.lat, lng: props.mapCoords.lng }}
     >
       {props.isMarkerShown && (
