@@ -26,11 +26,12 @@ const Styledh1 = styled.h1`
 
 const StyledMapHolder = styled.div`
   width: 100%;
-  max-width: 400px;
+  max-width: 600px;
 `;
 
 const StyledMapAndDescriptionDiv = styled.div`
   min-height: 600px;
+  padding: 20px;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -103,7 +104,7 @@ class SuiteMain extends Component {
                   isMarkerShown
                   googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPga5vu3m3cf0F2sbSjhMRmayE54qWO1o&v=3.exp&libraries=geometry,drawing,places"
                   loadingElement={<div style={{ height: `100%` }} />}
-                  containerElement={<div style={{ height: `400px` }} />}
+                  containerElement={<div style={{ height: `600px` }} />}
                   mapElement={<div style={{ height: `100%` }} />}
                 />
               ) : null}

@@ -34,6 +34,7 @@ class AddSuiteForm extends Component {
   priceInput = React.createRef();
   statusInput = React.createRef();
   descInput = React.createRef();
+  cardDesc = React.createRef();
   imageInput = React.createRef();
   addressLineOne = React.createRef();
   addressLineTwo = React.createRef();
@@ -66,13 +67,15 @@ class AddSuiteForm extends Component {
       price: this.priceInput.current.value,
       status: this.statusInput.current.value,
       desc: this.descInput.current.value,
+      cardDesc: this.cardDesc.current.value,
       image: this.state.pictures,
       addressLineOne: this.addressLineOne.current.value,
       addressLineTwo: this.addressLineTwo.current.value,
       nextAvailableDate: this.nextAvailableDate.current.value,
       numberOfBeds: this.numberOfBeds.current.value,
       numberOfBath: this.numberOfBath.current.value,
-      numberOfParking: this.numberOfParking.current.value
+      numberOfParking: this.numberOfParking.current.value,
+      squareFeet: this.squareFeetInput.current.value
     };
     this.props.addSuite(suite);
     // this.startUploadManually();
@@ -127,7 +130,20 @@ class AddSuiteForm extends Component {
           ref={this.nextAvailableDate}
           placeholder="Next Available Date"
         />
-        <textarea name="desc" ref={this.descInput} placeholder="Desc" />
+        <label htmlFor="cardDesc">Card Description</label>
+        <textarea
+          required
+          name="cardDesc"
+          ref={this.cardDesc}
+          placeholder="Card Description (Keep it short)"
+        />
+        <label htmlFor="desc">Main Page Description</label>
+        <textarea
+          required
+          name="desc"
+          ref={this.descInput}
+          placeholder="Main Page Description"
+        />
         <div>
           <label htmlFor="numberOfBeds">
             <i className="fas fa-bed" />
@@ -163,6 +179,7 @@ class AddSuiteForm extends Component {
         </div>
         <label htmlFor="squareFeetInput">Size (Sq Feet)</label>
         <input
+          required
           type="number"
           name="squareFeetInput"
           ref={this.squareFeetInput}

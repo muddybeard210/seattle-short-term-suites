@@ -19,12 +19,17 @@ const StyledAvailabilitySign = styled.div`
 const StyledAmens = StyledAvailabilitySign.extend`
   background-color: #6c757d;
 `;
+const StyledAmensHolderDiv = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
 
 class SuiteCardAmens extends Component {
   state = {};
   render() {
     return (
-      <div>
+      <StyledAmensHolderDiv>
         <StyledAmens>
           <i className="fas fa-bed" />{" "}
           {this.props.suite.numberOfBeds ? this.props.suite.numberOfBeds : "0"}{" "}
@@ -42,7 +47,12 @@ class SuiteCardAmens extends Component {
             : "0"}{" "}
           Park
         </StyledAmens>
-      </div>
+        <StyledAmens>
+          <i class="fas fa-expand-arrows-alt" />{" "}
+          {this.props.suite.squareFeet ? this.props.suite.squareFeet : "0"} Sq
+          Ft
+        </StyledAmens>
+      </StyledAmensHolderDiv>
     );
   }
 }

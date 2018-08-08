@@ -40,7 +40,6 @@ class EditFishForm extends Component {
       ...this.props.suite,
       [event.currentTarget.name]: event.currentTarget.value
     };
-    console.log(event);
     this.props.updateSuite(this.props.index, updateSuite);
   };
   updateDescription = updatedDescription => {
@@ -131,7 +130,14 @@ class EditFishForm extends Component {
               type="text"
               placeholder="Next Available Date"
             />
-            <label htmlFor="desc">Suite Description</label>
+            <label htmlFor="cardDesc">Card Description</label>
+            <textarea
+              name="cardDesc"
+              value={this.props.suite.cardDesc || null}
+              onChange={this.handleChange}
+              placeholder="Card Description (Keep it short)"
+            />
+            <label htmlFor="desc">Main Suite Description</label>
             <JoditInput
               name="desc"
               suite={this.props.suite}
@@ -185,13 +191,13 @@ class EditFishForm extends Component {
               />
             </div>
             <div>
-              <label htmlFor="squareFeetInput">Size (Sq Feet)</label>
+              <label htmlFor="squareFeet">Size (Sq Feet)</label>
               <input
                 type="number"
-                name="squareFeetInput"
+                name="squareFeet"
                 value={
-                  this.props.suite.squareFeetInput
-                    ? this.props.suite.squareFeetInput
+                  this.props.suite.squareFeet
+                    ? this.props.suite.squareFeet
                     : "0"
                 }
                 onChange={this.handleChange}
