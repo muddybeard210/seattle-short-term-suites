@@ -57,7 +57,7 @@ const StyledSpan = styled.span`
   border-radius: 0.25rem;
 `;
 const StyledDescHolder = styled.div`
-  /* text-align: justify; */
+  text-align: justify;
   padding: 10px;
 `;
 const StyledName = styled.div`
@@ -93,7 +93,7 @@ class SuiteCard extends Component {
         </StyledName>
         <SuiteCardAmens suite={this.props.suite} />
         <StyledDescHolder>
-          <p>{this.props.suite.desc.slice(0, 230)}...</p>
+          <p>{this.props.suite.cardDesc.slice(0, 230)}...</p>
         </StyledDescHolder>
         <div>
           <StyledSpan className="badge badge-primary">

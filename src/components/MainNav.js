@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import logo from "../media/logo.jpg";
+import { HashLink as HLink } from "react-router-hash-link";
 
 const StyledNavWrapper = styled.div`
   height: 90px;
@@ -51,7 +52,9 @@ class MainNav extends Component {
         </StyledLogoHolder>
         <StyledNavLinkHolder>
           <Link to="/app/home">Home</Link>
-          <Link to="/app/availability">Availability</Link>
+          <HLink smooth to="/app/home#currentProperties">
+            Availability
+          </HLink>
           <Link to="/app/about">About</Link>
           <Link to="/app/faq">FAQ</Link>
         </StyledNavLinkHolder>

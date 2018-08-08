@@ -33,15 +33,7 @@ class EditSuiteFormPicture extends Component {
       cancelButtonText: "No, keep it"
     }).then(result => {
       if (result.value) {
-        // Swal({
-        //   title: "Deleted!",
-        //   text: "Your image has been deleted.",
-        //   type: "success",
-        //   timer: 1000
-        // });
         this.props.handleDeletePhoto(this.props.fileName);
-        // For more information about handling dismissals please visit
-        // https://sweetalert2.github.io/#handling-dismissals
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal("Cancelled", "Your image is safe :)", "error");
       }
