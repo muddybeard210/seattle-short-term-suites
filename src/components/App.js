@@ -4,6 +4,7 @@ import About from "./About";
 import Home from "./Home";
 import SuiteMain from "./SuiteMain";
 import Footer from "./Footer";
+import Faq from "./Faq";
 import Availability from "./Availability";
 import "../css/App.css";
 import { Switch, Route } from "react-router-dom";
@@ -42,6 +43,7 @@ class App extends Component {
             />
             <Route exact path={`/app/availability/`} component={Availability} />
             <Route exact path={"/app/About"} component={About} />
+            <Route exact path={"/app/faq"} component={Faq} />
             <Route
               exact
               path={"/app/Home"}
