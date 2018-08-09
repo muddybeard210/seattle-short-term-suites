@@ -6,12 +6,26 @@ import Geocode from "react-geocode";
 
 const StyledBannerContent = styled.div`
   background: url(${props => props.imageBackground});
-  background-size: 100%;
+  background-size: cover;
   background-position-y: center;
   height: 50vh;
   min-height: 850px;
   display: flex;
   align-items: center;
+`;
+
+const StyledGalleryImageDiv = styled.div`
+  background: url(${props => props.imageBackground});
+  background-size: cover;
+  background-position: center;
+  flex: 1;
+  justify-content: center;
+  display: flex;
+  height: 500px;
+  transition: flex 0.2s ease-out;
+  &:hover {
+    flex: 5;
+  }
 `;
 const Styledh1 = styled.h1`
   color: white;
@@ -39,6 +53,11 @@ const StyledMapAndDescriptionDiv = styled.div`
 
 const StyledSuiteDescContainerDiv = styled.div`
   max-width: 800px;
+`;
+
+const StyledImageHolderDiv = styled.div`
+  display: flex;
+  overflow: hidden;
 `;
 
 class SuiteMain extends Component {
@@ -113,8 +132,24 @@ class SuiteMain extends Component {
               <div
                 dangerouslySetInnerHTML={{ __html: this.state.suite.desc }}
               />
+              <div>
+                <h3>Interested in Booking this Suite?</h3>
+                <p>Contact us at: 555-555-5555</p>
+                <p>Or Email us at: shorttermsuites@gmail.com</p>
+              </div>
             </StyledSuiteDescContainerDiv>
           </StyledMapAndDescriptionDiv>
+          <StyledImageHolderDiv>
+            {this.state.suite.image.map(function(item) {
+              return (
+                <StyledGalleryImageDiv
+                  key={item.filename}
+                  imageBackground={item.url}
+                  alt=""
+                />
+              );
+            })}
+          </StyledImageHolderDiv>
         </div>
       );
   }

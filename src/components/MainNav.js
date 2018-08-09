@@ -10,6 +10,7 @@ const StyledNavWrapper = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 `;
 const StyledLogoHolder = styled.div`
   width: 55%;
@@ -19,7 +20,7 @@ const StyledLogoHolder = styled.div`
   }
 `;
 const StyledNavLinkHolder = styled.div`
-  width: 45%;
+  width: 25%;
   display: flex;
   justify-content: space-around;
   font-family: Raleway, sans-serif;
@@ -55,7 +56,6 @@ class MainNav extends Component {
           <HLink smooth to="/app/home#currentProperties">
             Availability
           </HLink>
-          <Link to="/app/about">About</Link>
           <Link to="/app/faq">FAQ</Link>
         </StyledNavLinkHolder>
       </StyledNavWrapper>

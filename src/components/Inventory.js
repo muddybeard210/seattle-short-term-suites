@@ -10,7 +10,7 @@ import { injectGlobal } from "styled-components";
 injectGlobal`
   @import url('https://fonts.googleapis.com/css?family=Open+Sans|Raleway:300');
 
-  h1, h2, h3, h4 {
+  h1, h2, h3, h4, .Collapsible__trigger {
     font-family: Raleway, sans-serif;
   }
   p {
