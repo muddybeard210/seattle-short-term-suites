@@ -37,9 +37,9 @@ class CurrentProperties extends Component {
   };
   render() {
     return (
-      <div id="currentProperties">
+      <div>
         <StyledSectionHeader>
-          <h1>Current Properties</h1>
+          <h1 id="currentProperties">Current Properties</h1>
         </StyledSectionHeader>
         <StyledSectionHeader>
           <RefineSearch handleRefine={this.handleRefine} />
