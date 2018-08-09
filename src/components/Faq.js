@@ -13,6 +13,8 @@ injectGlobal`
 }
 .Collapsible__trigger {
     font-size: 24px;
+    display: block;
+    width: 100%;
 }
 .Collapsible__contentInner p {
     margin-bottom: 0px;
