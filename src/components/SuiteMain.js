@@ -9,7 +9,7 @@ const StyledBannerContent = styled.div`
   background-size: cover;
   background-position-y: center;
   height: 50vh;
-  min-height: 850px;
+  max-height: 1000px;
   display: flex;
   align-items: center;
 `;
@@ -39,8 +39,9 @@ const Styledh1 = styled.h1`
 `;
 
 const StyledMapHolder = styled.div`
-  width: 100%;
+  width: 50%;
   max-width: 600px;
+  padding: 50px;
 `;
 
 const StyledMapAndDescriptionDiv = styled.div`
@@ -52,7 +53,7 @@ const StyledMapAndDescriptionDiv = styled.div`
 `;
 
 const StyledSuiteDescContainerDiv = styled.div`
-  max-width: 800px;
+  max-width: 50%;
 `;
 
 const StyledImageHolderDiv = styled.div`

@@ -5,6 +5,7 @@ import Home from "./Home";
 import SuiteMain from "./SuiteMain";
 import Footer from "./Footer";
 import Faq from "./Faq";
+import ScrollToTop from "./ScrollToTop";
 import Availability from "./Availability";
 import "../css/App.css";
 import { Switch, Route } from "react-router-dom";
@@ -36,31 +37,37 @@ class App extends Component {
           <MainNav />
         </div>
         <div>
-          <Switch>
-            <Route
-              path={`/app/availability/:suiteName`}
-              component={Availability}
-            />
-            <Route exact path={`/app/availability/`} component={Availability} />
-            <Route exact path={"/app/About"} component={About} />
-            <Route exact path={"/app/faq"} component={Faq} />
-            <Route
-              exact
-              path={"/app/Home"}
-              render={props => <Home {...props} suites={this.state.suites} />}
-            />
-            {this.state.suites ? (
+          <ScrollToTop>
+            <Switch>
+              <Route
+                path={`/app/availability/:suiteName`}
+                component={Availability}
+              />
               <Route
                 exact
-                path={"/app/suite/:suiteName"}
-                render={props => (
-                  <SuiteMain {...props} suites={this.state.suites} />
-                )}
+                path={`/app/availability/`}
+                component={Availability}
               />
-            ) : null}
-            {/* <Route exact path={"/"} component={Home} /> */}
-            <Route component={Home} />
-          </Switch>
+              <Route exact path={"/app/About"} component={About} />
+              <Route exact path={"/app/faq"} component={Faq} />
+              <Route
+                exact
+                path={"/app/Home"}
+                render={props => <Home {...props} suites={this.state.suites} />}
+              />
+              {this.state.suites ? (
+                <Route
+                  exact
+                  path={"/app/suite/:suiteName"}
+                  render={props => (
+                    <SuiteMain {...props} suites={this.state.suites} />
+                  )}
+                />
+              ) : null}
+              {/* <Route exact path={"/"} component={Home} /> */}
+              <Route component={Home} />
+            </Switch>
+          </ScrollToTop>
         </div>
         <Footer />
       </div>
