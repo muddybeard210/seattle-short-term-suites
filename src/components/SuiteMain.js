@@ -23,6 +23,7 @@ const StyledGalleryImageDiv = styled.div`
   display: flex;
   height: 500px;
   transition: flex 0.2s ease-out;
+  box-shadow: inset 0 0 5px 5px rgba(0, 0, 0, 0.1);
   &:hover {
     flex: 5;
   }
@@ -42,6 +43,11 @@ const StyledMapHolder = styled.div`
   width: 50%;
   max-width: 600px;
   padding: 50px;
+
+  @media (max-width: 700px) {
+    width: 100%;
+    padding: 10px;
+  }
 `;
 
 const StyledMapAndDescriptionDiv = styled.div`
@@ -50,10 +56,18 @@ const StyledMapAndDescriptionDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+  }
 `;
 
 const StyledSuiteDescContainerDiv = styled.div`
-  max-width: 50%;
+  width: 50%;
+  @media (max-width: 700px) {
+    width: 100%;
+    padding: 10px;
+  }
 `;
 
 const StyledImageHolderDiv = styled.div`
