@@ -13,14 +13,12 @@ const StyledNavWrapper = styled.div`
   justify-content: space-between;
 `;
 const StyledLogoHolder = styled.div`
-  width: 55%;
   height: 100%;
   & img {
     height: 100%;
   }
 `;
 const StyledNavLinkHolder = styled.div`
-  width: 25%;
   display: flex;
   justify-content: space-around;
   font-family: Raleway, sans-serif;

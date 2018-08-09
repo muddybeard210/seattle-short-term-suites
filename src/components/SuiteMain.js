@@ -24,8 +24,17 @@ const StyledGalleryImageDiv = styled.div`
   height: 500px;
   transition: flex 0.2s ease-out;
   box-shadow: inset 0 0 5px 5px rgba(0, 0, 0, 0.1);
-  &:hover {
+  &:hover,
+  &:active {
     flex: 5;
+  }
+  @media screen and (max-width: 700px) {
+    width: 100%;
+    flex: none;
+    &:hover,
+    &:active {
+      flex: none;
+    }
   }
 `;
 const Styledh1 = styled.h1`
@@ -65,7 +74,7 @@ const StyledMapAndDescriptionDiv = styled.div`
 const StyledSuiteDescContainerDiv = styled.div`
   width: 50%;
   @media (max-width: 700px) {
-    width: 100%;
+    width: 100vw;
     padding: 10px;
   }
 `;
@@ -73,6 +82,9 @@ const StyledSuiteDescContainerDiv = styled.div`
 const StyledImageHolderDiv = styled.div`
   display: flex;
   overflow: hidden;
+  @media (max-width: 700px) {
+    overflow-x: scroll;
+  }
 `;
 
 class SuiteMain extends Component {
