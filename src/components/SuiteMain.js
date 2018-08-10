@@ -3,6 +3,7 @@ import SuiteMainMap from "./SuiteMainMap";
 import styled from "styled-components";
 // @import url('https://fonts.googleapis.com/css?family=Dancing+Script|Lobster|Marck+Script|Yellowtail');
 import Geocode from "react-geocode";
+import ImageCarousel from "./ImageCarousel";
 
 const StyledBannerContent = styled.div`
   background: url(${props => props.imageBackground});
@@ -13,7 +14,7 @@ const StyledBannerContent = styled.div`
   display: flex;
   align-items: center;
 `;
-
+// eslint-disable-next-line
 const StyledGalleryImageDiv = styled.div`
   background: url(${props => props.imageBackground});
   background-size: cover;
@@ -167,7 +168,7 @@ class SuiteMain extends Component {
             </StyledSuiteDescContainerDiv>
           </StyledMapAndDescriptionDiv>
           <StyledImageHolderDiv>
-            {this.state.suite.image.map(function(item) {
+            {/* {this.state.suite.image.map(function(item) {
               return (
                 <StyledGalleryImageDiv
                   key={item.filename}
@@ -175,7 +176,8 @@ class SuiteMain extends Component {
                   alt=""
                 />
               );
-            })}
+            })} */}
+            <ImageCarousel images={this.state.suite.image} />
           </StyledImageHolderDiv>
         </div>
       );

@@ -17,6 +17,9 @@ const StyledLogoHolder = styled.div`
   & img {
     height: 100%;
   }
+  @media (max-width: 500px) {
+    display: none;
+  }
 `;
 const StyledNavLinkHolder = styled.div`
   display: flex;

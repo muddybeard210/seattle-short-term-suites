@@ -48,7 +48,7 @@ class SuiteCardAmens extends Component {
           Park
         </StyledAmens>
         <StyledAmens>
-          <i class="fas fa-expand-arrows-alt" />{" "}
+          <i className="fas fa-expand-arrows-alt" />{" "}
           {this.props.suite.squareFeet ? this.props.suite.squareFeet : "0"} Sq
           Ft
         </StyledAmens>
