@@ -3,8 +3,7 @@ import styled from "styled-components";
 
 const MainImgHolder = styled.div`
   height: 500px;
-  width: 500px;
-  background-color: lightgrey;
+  width: 100%;
   display: flex;
   justify-content: center;
   overflow: hidden;
@@ -21,6 +20,13 @@ const MainImg = styled.img`
 const MiniImg = styled.img`
   height: 100px;
   width: 100px;
+  margin: 10px;
+  cursor: pointer;
+`;
+const StyledMiniImgHolder = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 `;
 
 class ImageCarousel extends Component {
@@ -28,6 +34,9 @@ class ImageCarousel extends Component {
     imageToShow: this.props.images[0].url
   };
   handleClick = event => {
+    console.log(event);
+    console.log(event.target);
+    console.log(event.currentTarget);
     this.setState({
       imageToShow: this.props.images[event.target.name].url
     });
@@ -39,16 +48,17 @@ class ImageCarousel extends Component {
           <MainImgHolder>
             <MainImg src={this.state.imageToShow || null} />
           </MainImgHolder>
-          <div>
+          <StyledMiniImgHolder>
             {this.props.images.map((image, index) => (
               <MiniImg
                 onClick={this.handleClick}
                 name={index}
                 src={image.url}
                 key={index}
+                active={false}
               />
             ))}
-          </div>
+          </StyledMiniImgHolder>
         </MainWrapperDiv>
       );
   }

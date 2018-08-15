@@ -38,6 +38,10 @@ const StyledNavLinkHolder = styled.div`
       color: white;
     }
   }
+  @media (max-width: 500px) {
+    justify-content: center;
+    width: 100%;
+  }
 `;
 
 class MainNav extends Component {
